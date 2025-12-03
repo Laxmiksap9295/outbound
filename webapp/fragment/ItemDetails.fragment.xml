@@ -1,0 +1,273 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:m="sap.ui.commons.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" xmlns:k="sap.ui.layout.form" xmlns:ndc="sap.ndc">
+	<Dialog verticalScrolling="true" class="pageDialogItem" type="Standard">
+		<customHeader>
+			<Bar>
+				<contentMiddle>
+					<Label text="{i18n>ItemDetails}" class="Label_Frag" id="itemDetails"></Label>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://decline" press="onCancelItemClose" class="zsapMBtnIconClose"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<Label id="id_FragMat" class="sapUiTinyMarginBegin Form_Label"></Label>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button id="idMultiScanningBatchNumbers" icon="sap-icon://bar-code" class="sapUiSmallMarginBegin" press="onScanPress" />
+			</Toolbar>
+			<HBox width="100%">
+				<VBox width="50%" class="sapUiSmallMarginBegin">
+					<Label text="{i18n>TotDeliveryQty}" class="Form_Label Form_Label_Wrapping"></Label>
+					<Input id="id_LfimgVal" class="InputPlaceholder_CP inputplant" editable="false" Change="onChangeDeliveryQty" submit="onChangeDeliveryQty"
+						liveChange="onChangeDeliveryQty" width="90%"></Input>
+					<Input value="{BatchItems>/Items/0/Menge}" class="InputPlaceholder_CP inputplant" editable="false" Change="onChangeDeliveryQty"
+						submit="onChangeDeliveryQty" liveChange="onChangeDeliveryQty" width="90%"
+						visible="{=${oBatchEnable>/results/0/F4FieldsNav/results/0/AltUnit}==='X' ? true : false }"></Input>
+					<Label text="{BatchItems>Bstme}" class="Form_Label Form_Label_Wrapping sapUiTinyMarginTop sapUiTinyMarginBegin" textAlign="Right"
+						visible="{=${oBatchEnable>/results/0/F4FieldsNav/results/0/AltUnit}==='X' ? true : false }"></Label>
+					<Label text="{i18n>Material}" class="Form_Label Form_Label_Wrapping"
+						visible="{=${oBatchEnable>/results/0/F4FieldsNav/results/0/OTNUM}==='X' ? true : false }"></Label>
+					<Input value="{BatchItems>/Items/0/Maktx}" editable="false" width="90%" class="InputPlaceholder_CP inputplant"
+						visible="{=${oBatchEnable>/results/0/F4FieldsNav/results/0/OTNUM}==='X' ? true : false }"></Input>
+					<Label text="{i18n>Kunnr}" class="Form_Label Form_Label_Wrapping"
+						visible="{=${oBatchEnable>/results/0/F4FieldsNav/results/0/OTNUM}==='X' ? true : false }"></Label>
+					<Input value="{DeliverySet>/HeaderItems/0/Customer}" editable="false" width="90%" class="InputPlaceholder_CP inputplant"
+						visible="{=${oBatchEnable>/results/0/F4FieldsNav/results/0/OTNUM}==='X' ? true : false }"></Input>
+					<!--<Input value="{DeliverySet>/Header/Kunnr} - {DeliverySet>/Header/KunnrDesc}" enabled="false" width="90%"-->
+					<!--	class="InputPlaceholder_CP inputplant" visible="{=${oBatchEnable>/results/0/F4FieldsNav/results/0/OTNUM}==='X' ? true : false }"></Input>-->
+					<!--</HBox>-->
+				</VBox>
+				<VBox width="50%">
+					<Label text="{i18n>SCNum}" class="Form_Label Form_Label_Wrapping"
+						visible="{=${oBatchEnable>/results/0/F4FieldsNav/results/0/SC_NO}==='X' ? true : false }"></Label>
+					<Input value="{BatchItems>/Items/0/Sc_No}" class="InputPlaceholder_CP inputplant" width="90%"
+						visible="{=${oBatchEnable>/results/0/F4FieldsNav/results/0/SC_NO}==='X' ? true : false }" showValueHelp="true"
+						valueHelpRequest="fnhandleSaleCont" valueHelpOnly="true"></Input>
+					<Label text="{i18n>OTNUM}" class="Form_Label Form_Label_Wrapping"
+						visible="{=${oBatchEnable>/results/0/F4FieldsNav/results/0/OTNUM}==='X' ? true : false }"></Label>
+					<Input value="{BatchItems>/Items/0/Otnum}" class="InputPlaceholder_CP inputplant" width="90%"
+						visible="{=${oBatchEnable>/results/0/F4FieldsNav/results/0/OTNUM}==='X' ? true : false }" liveChange="fnLiveChangeOTNum" enabled="true"
+						editable="true" maxLength="40"></Input>
+					<!--Added on 13/6/22-->
+					<Label text="{i18n>OpenQty}" class="Form_Label Form_Label_Wrapping" visible="true"></Label>
+					<Input id="id_OpQty" class="InputPlaceholder_CP inputplant" width="90%" visible="true" editable="false"></Input>
+					<!--End of Added on 13/6/22-->
+					<!--Commented on 13/06/22-->
+					<!--<Label text="{i18n>OpenQty}" class="Form_Label Form_Label_Wrapping"-->
+					<!--	visible="{=${oBatchEnable>/results/0/F4FieldsNav/results/0/Charg01}==='X' ? true : false }"></Label>-->
+					<!--<Input id="id_OpQty" class="InputPlaceholder_CP inputplant" width="90%"-->
+					<!--	visible="{=${oBatchEnable>/results/0/F4FieldsNav/results/0/Charg01}==='X' ? true : false }" editable="false"></Input>-->
+					<!--End of Commented-->
+				</VBox>
+			</HBox>
+			<l:Grid defaultSpan="L12 M12 S12" class="GridClass">
+				<List class="dqcList" items="{BatchItems>/Items}">
+					<headerToolbar>
+						<OverflowToolbar height="0.1rem">
+							<ToolbarSpacer/>
+						</OverflowToolbar>
+					</headerToolbar>
+					<CustomListItem press="onItemPress">
+						<l:Grid defaultSpan="L12 M12 S12" class="Form_Label">
+							<!--Added by Avinash - Design Changes-->
+							<HBox width="100%">
+								<VBox width="40%" class="sapUiSmallMarginBegin" visible="{=${DeliverySet>/Header/Origin}==='H' ? false : true }">
+									<Label text="{i18n>Batchnumber}" class="Form_Label"></Label>
+									<Input value="{BatchItems>Charg}" class="InputPlaceholder_CP inputplant" change="fnValidateBatch" maxLength="10"
+										enabled="{=${oBatchEnable>/results/0/F4FieldsNav/results/0/Charg01}==='X' ? true : false }" showValueHelp="false" width="90%"
+										visible="{=${oBatchEnable>/results/0/F4FieldsNav/results/0/Charg01}==='X' ? true : false }"></Input>
+									<Input value="{BatchItems>Charg}" class="InputPlaceholder_CP inputplant"
+										enabled="{=${oBatchEnable>/results/0/F4FieldsNav/results/0/Charg}==='X' ? true : false }" showValueHelp="true"
+										valueHelpRequest="fnhandleBatch" valueHelpOnly="true" width="90%" id="idChargBatchnumberInput"
+										visible="{=${oBatchEnable>/results/0/F4FieldsNav/results/0/Charg01}==='' ? true : false }"></Input>
+								</VBox>
+								<!--Start of Changes by Avinash on 05/07/22 -->
+								<VBox width="40%" class="sapUiSmallMarginBegin" visible="{=${DeliverySet>/Header/Origin}==='H' ? true : false }">
+									<Label text="{i18n>Batchnumber}" class="Form_Label"></Label>
+									<Input value="{BatchItems>Charg}" class="InputPlaceholder_CP inputplant"
+										enabled="{=${oBatchEnable>/results/0/F4FieldsNav/results/0/Charg}==='X' ? true : false }" showValueHelp="true"
+										valueHelpRequest="fnhandleBatch" valueHelpOnly="true" width="90%" visible="true"></Input>
+								</VBox>
+								<!--End of Changes-->
+								<!--Commented on 13/06/22-->
+								<!--<VBox width="30%" visible="{=${oBatchEnable>/results/0/F4FieldsNav/results/0/Charg01}==='' ? true : false }">-->
+								<!--End of Commented-->
+								<VBox width="30%" visible="true">
+									<Label text="{i18n>DeliveryQty}" class="Form_Label"></Label>
+									<Input value="{BatchItems>Lfimg} " class="InputPlaceholder_CP inputplant" enabled="{=${oBatchEnable>/results/0/F4FieldsNav/results/0/DelQty}==='X' ? true : false }" change="onChangeDeliveryQty"
+										submit="onChangeDeliveryQty" liveChange="onChangeDeliveryQty">
+										<layoutData>
+											<l:GridData span="L4 M4 S4"/>
+										</layoutData>
+									</Input>
+									<!--<HBox>-->
+								</VBox>
+								<VBox width="30%" id="idPickingQtyVBox">
+									<Label text="{i18n>PickingQty}" class="Form_Label"></Label>
+									<!--<HBox>-->
+									<Input value="{BatchItems>Pikmg}" type="Number" class="InputPlaceholder_CP sapUiTinyMarginEnd" editable="{BatchItems>PikmgF}"
+										change="onChangePickQty" width="90%" submit="onChangePickQty" liveChange="onChangePickQty"
+										enabled="{=${BatchItems>Fpicq} !=='X' ? true : false}"
+										visible="{=${oBatchEnable>/results/0/F4FieldsNav/results/0/Charg01}==='X' ? true : false }"></Input>
+									<Input value="{BatchItems>Pikmg}" type="Number" class="InputPlaceholder_CP sapUiTinyMarginEnd" editable="{BatchItems>PikmgF}"
+										change="onChangePickQtyManual" width="90%" 
+										enabled="{=${BatchItems>Fpicq} !=='X' ? true : false}"
+										visible="{=${oBatchEnable>/results/0/F4FieldsNav/results/0/Charg01}==='' ? true : false }"></Input>
+									<Button icon="sap-icon://bar-code" text="{i18n>Scan}" enabled="{=${BatchItems>Fpicq} !=='X' ? false : true}"
+										visible="{=${BatchItems>Fpicq} !=='X' ? false : true}" class="sapUiSmallMarginBegin sapUiSizeCompact" tooltip="{i18n>Scan}"
+										press="onScanQRValue"></Button>
+								</VBox>
+								<!--<VBox width="30%" visible="{=${oBatchEnable>/results/0/F4FieldsNav/results/0/Charg01}==='X' ? true : false }">-->
+								<VBox width="30%" visible="true">
+									<HBox height="1.5rem" visible="true"></HBox>	
+									<HBox>
+										<!-- <Button id="idAddBatchButton" icon="sap-icon://add" class="sapUiSizeCompact" visible="{path:'DeliverySet>BatchUpdMode', formatter: 'LoadingConfirmation.model.formatter.Addvalidate'}" type="Accept" press="fnAddBatch"/>
+										<Button id="idCancelBatchButton" icon="sap-icon://sys-minus" type="Reject" visible="{path:'DeliverySet>BatchUpdMode', formatter: 'LoadingConfirmation.model.formatter.Deletevalidate'}" class="sapUiTinyMarginBegin sapUiSizeCompact" press="fnRemoveBatch"/> -->
+										<Button id="idAddBatchButton" visible="{=${BatchItems>BatchUpdMode} === 'M'}"  icon="sap-icon://add" class="sapUiSizeCompact"  type="Accept" press="fnAddBatch"/>
+										<Button id="idCancelBatchButton" visible="{=${BatchItems>BatchUpdMode} === 'M' || ${BatchItems>BatchUpdMode} === 'S'}" icon="sap-icon://sys-minus" type="Reject"  class="sapUiTinyMarginBegin sapUiSizeCompact" press="fnRemoveBatch"/>
+									</HBox>
+								</VBox>
+							</HBox>
+							<!--End of Added-->
+							<!--Commented Start by Avinash	-->
+							<!--<HBox alignItems="Center">-->
+							<!--	<Label text="{i18n>Batchnumber} : " class="Form_Label Form_Label_Wrapping">-->
+							<!--		<layoutData>-->
+							<!--			<l:GridData span="L4 M5 S5"/>-->
+							<!--		</layoutData>-->
+							<!--	</Label>-->
+							<!--	<Input value="{BatchItems>Charg}" class="InputPlaceholder_CP inputplant"-->
+							<!--		enabled="{=${oBatchEnable>/results/0/F4FieldsNav/results/0/Charg}==='X' ? true : false }" showValueHelp="true"-->
+							<!--		valueHelpRequest="fnhandleBatch" valueHelpOnly="true">-->
+							<!--		<layoutData>-->
+							<!--			<l:GridData span="L6 M4 S4"/>-->
+							<!--		</layoutData>-->
+							<!--	</Input>-->
+							<!--Added by Avinash-->
+							<!--	<HBox width="20%"/>-->
+							<!--	<Label text="{i18n>SCNum} : " class="Form_Label Form_Label_Wrapping"-->
+							<!--		visible="{=${oBatchEnable>/results/0/F4FieldsNav/results/0/SC_NO}==='X' ? true : false }">-->
+							<!--		<layoutData>-->
+							<!--			<l:GridData span="L4 M5 S5"/>-->
+							<!--		</layoutData>-->
+							<!--	</Label>-->
+							<!--	<Input value="{BatchItems>Sc_No}" class="InputPlaceholder_CP inputplant"-->
+							<!--		visible="{=${oBatchEnable>/results/0/F4FieldsNav/results/0/SC_NO}==='X' ? true : false }" enabled="false">-->
+							<!--		<layoutData>-->
+							<!--			<l:GridData span="L6 M4 S4"/>-->
+							<!--		</layoutData>-->
+							<!--	</Input>-->
+							<!--End of Added-->
+							<!--</HBox>-->
+							<!--<Label text="" class="Form_Label Form_Label_Wrapping sapUiTinyMarginTop sapUiTinyMarginBegin" textAlign="Right">-->
+							<!--	<layoutData>-->
+							<!--		<l:GridData span="L2 M3 S3"/>-->
+							<!--	</layoutData>-->
+							<!--</Label>-->
+							<!--<HBox alignItems="Center">-->
+							<!--	<Label text="{i18n>DeliveryQty}:" class="Form_Label Form_Label_Wrapping">-->
+							<!--		<layoutData>-->
+							<!--			<l:GridData span="L4 M5 S5"/>-->
+							<!--		</layoutData>-->
+							<!--	</Label>-->
+							<!--	<Input value="{BatchItems>Lfimg} " class="InputPlaceholder_CP inputplant" enabled="false" Change="onChangeDeliveryQty"-->
+							<!--		submit="onChangeDeliveryQty" liveChange="onChangeDeliveryQty">-->
+							<!--		<layoutData>-->
+							<!--			<l:GridData span="L4 M4 S4"/>-->
+							<!--		</layoutData>-->
+							<!--	</Input>-->
+							<!--	<Label text="{BatchItems>Vrkme}" class="Form_Label Form_Label_Wrapping sapUiTinyMarginTop sapUiTinyMarginBegin" textAlign="Right">-->
+							<!--		<layoutData>-->
+							<!--			<l:GridData span="L4 M3 S3"/>-->
+							<!--		</layoutData>-->
+							<!--	</Label>-->
+							<!--	<Label text="" class="Form_Label Form_Label_Wrapping">-->
+							<!--		<layoutData>-->
+							<!--			<l:GridData span="L4 M5 S5"/>-->
+							<!--		</layoutData>-->
+							<!--	</Label>-->
+							<!--Added by Avinash-->
+							<!--	<HBox width="20%"/>-->
+							<!--	<Label text="{i18n>OTNUM} : " class="Form_Label Form_Label_Wrapping"-->
+							<!--		visible="{=${oBatchEnable>/results/0/F4FieldsNav/results/0/OTNUM}==='X' ? true : false }">-->
+							<!--		<layoutData>-->
+							<!--			<l:GridData span="L4 M5 S5"/>-->
+							<!--		</layoutData>-->
+							<!--	</Label>-->
+							<!--	<Input value="{BatchItems>Otnum}" class="InputPlaceholder_CP inputplant"-->
+							<!--		visible="{=${oBatchEnable>/results/0/F4FieldsNav/results/0/OTNUM}==='X' ? true : false }" liveChange="fnLiveChangeOTNum" enabled="true"-->
+							<!--		editable="true" maxLength="40">-->
+							<!--		<layoutData>-->
+							<!--			<l:GridData span="L6 M4 S4"/>-->
+							<!--		</layoutData>-->
+							<!--	</Input>-->
+							<!--End of Added-->
+							<!--</HBox>-->
+							<!--<HBox alignItems="Center">-->
+							<!--	<Input value="{BatchItems>Menge}" class="InputPlaceholder_CP inputplant" enabled="false" Change="onChangeDeliveryQty"-->
+							<!--		submit="onChangeDeliveryQty" liveChange="onChangeDeliveryQty"-->
+							<!--		visible="{=${oBatchEnable>/results/0/F4FieldsNav/results/0/AltUnit}==='X' ? true : false }">-->
+							<!--		<layoutData>-->
+							<!--			<l:GridData span="L4 M4 S4"/>-->
+							<!--		</layoutData>-->
+							<!--	</Input>-->
+							<!--	<Label text="{BatchItems>Bstme}" class="Form_Label Form_Label_Wrapping sapUiTinyMarginTop sapUiTinyMarginBegin" textAlign="Right"-->
+							<!--		visible="{=${oBatchEnable>/results/0/F4FieldsNav/results/0/AltUnit}==='X' ? true : false }">-->
+							<!--		<layoutData>-->
+							<!--			<l:GridData span="L4 M3 S3"/>-->
+							<!--		</layoutData>-->
+							<!--	</Label>-->
+							<!-- ended by chaithra on 8/4/2020 -->
+							<!--	<Label text="{i18n>PickingQty} : " class="Form_Label Form_Label_Wrapping">-->
+							<!--		<layoutData>-->
+							<!--			<l:GridData span="L4 M5 S5"/>-->
+							<!--		</layoutData>-->
+							<!--	</Label>-->
+							<!--	<Input value="{BatchItems>Pikmg}" type="Number" class="InputPlaceholder_CP sapUiSmallMarginEnd" editable="{BatchItems>PikmgF}"-->
+							<!--		Change="onChangePickQty" submit="onChangePickQty" liveChange="onChangePickQty" enabled="{=${BatchItems>Fpicq} !=='X' ? true : false}">-->
+							<!--		<layoutData>-->
+							<!--			<l:GridData span="L4 M3 S3"/>-->
+							<!--		</layoutData>-->
+							<!--	</Input>-->
+							<!--	<Button icon="sap-icon://bar-code" text="{i18n>Scan}" enabled="{=${BatchItems>Fpicq} !=='X' ? false : true}"-->
+							<!--		visible="{=${BatchItems>Fpicq} !=='X' ? false : true}" class="sapUiSmallMarginBegin sapUiSizeCompact" tooltip="{i18n>Scan}"-->
+							<!--		press="onScanQRValue">-->
+							<!--		<layoutData>-->
+							<!--			<l:GridData span="L4 M3 S3"/>-->
+							<!--		</layoutData>-->
+							<!--	</Button>-->
+							<!--</HBox>-->
+							<!--<Label text="" class="Form_Label Form_Label_Wrapping sapUiTinyMarginTop sapUiTinyMarginBegin" textAlign="Right">-->
+							<!--	<layoutData>-->
+							<!--		<l:GridData span="L2 M3 S3"/>-->
+							<!--	</layoutData>-->
+							<!--</Label>-->
+							<!-- Added by chaithra on 8/4/2020 -->
+							<!--<Label text="" class="Form_Label Form_Label_Wrapping"-->
+							<!--	visible="{=${oBatchEnable>/results/0/F4FieldsNav/results/0/Charg}==='X' ? true : false }">-->
+							<!--	<layoutData>-->
+							<!--		<l:GridData span="L4 M5 S5"/>-->
+							<!--	</layoutData>-->
+							<!--</Label>-->
+							<!-- Ended by chaithra on 8/4/2020 -->
+						</l:Grid>
+					</CustomListItem>
+				</List>
+			</l:Grid>
+			<Toolbar >
+				<HBox visible="false" id="id_ReasonChange">
+					<Label text="{i18n>Reason}" required="true" class="Form_Label Form_Label_Wrapping sapUiTinyMarginBegin"></Label>
+					<ComboBox id="id_ReasonLP" class="cl_Combo InputPlaceholder_CP sapUiTinyMarginBeginEnd">
+						<!--<core:Item key="{JMReason>Reason}" text="{JMReason>Reason}"/>-->
+						<core:Item key="{i18n>TypoMistake}" text="{i18n>TypoMistake}"/>
+					</ComboBox>
+				</HBox>
+				<ToolbarSpacer/>
+				<Button width="150px" text="{i18n>Save}" type="Unstyled" class="cl_buttonok floatRightMR10" press="onItemSave" visible="{BatchItems>/Save}"></Button>
+			</Toolbar>
+			<!--<Button width="150px" text="{i18n>Save}" type="Unstyled" class="cl_buttonok floatRightMR10" press="onItemSave"></Button>-->
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

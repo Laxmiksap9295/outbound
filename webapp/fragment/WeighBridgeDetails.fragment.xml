@@ -1,0 +1,22 @@
+<!--<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">-->
+<!--	<SelectDialog title="{i18n>WeighbridgeProcess}" class="sapUiPopupWithPadding" items="{WeighbridgeData>/}" search="onweighbridgesearch"-->
+<!--		liveChange="onweighbridgesearch" confirm="fnWeighbridgeconfirm" cancel="fncancel">-->
+<!--		<StandardListItem title="{WeighbridgeData>Wbid}" description="{WeighbridgeData>Vehno}"/>-->
+<!--	</SelectDialog>-->
+<!--</core:FragmentDefinition>-->
+<!--Added by Avinash-->
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>WeighbridgeProcess}" class="Dialog" items="{WeighbridgeData>/}" search="onweighbridgesearch"
+		liveChange="onweighbridgesearch" confirm="fnWeighbridgeconfirm" draggable="true">
+		<ObjectListItem title="{WeighbridgeData>Vehno}" class="cl_ObjList">
+			<attributes>
+				<ObjectAttribute title="{i18n>WbIdlabel}" text="{WeighbridgeData>Wbid}" class="WordWrapClass"></ObjectAttribute>
+				<ObjectAttribute title="{i18n>Status1}" text="{WeighbridgeData>Status}" class="WordWrapClass"></ObjectAttribute>
+			</attributes>
+			<firstStatus>
+				<ObjectStatus text="{WeighbridgeData>Wtype}" state="Success" class="objectStatus"/>
+			</firstStatus>
+		</ObjectListItem>
+	</SelectDialog>
+</core:FragmentDefinition>
+<!--End of Added-->

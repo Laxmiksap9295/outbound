@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>WeighbridgeProcess}" class="sapUiPopupWithPadding" items="{WeighbridgeData>/}" search="onweighbridgesearch"
+		liveChange="onweighbridgesearch" confirm="fnWeighbridgeconfirm" cancel="fncancel">
+		<StandardListItem title="{WeighbridgeData>Wbid}" description="{WeighbridgeData>Vehno}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

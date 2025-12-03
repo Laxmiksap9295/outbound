@@ -1,0 +1,55 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:m="sap.ui.commons.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Dialog type="Standard" stretchOnPhone="true" stretch="true">
+		<customHeader class="Inbound_Bar1">
+			<Bar class="Inbound_Bar1">
+				<contentMiddle>
+					<Title text="{i18n>DocItems}" class="Inbound_Title"/>
+				</contentMiddle>
+				<contentRight>
+					<core:Icon src="sap-icon://decline" color="#ffffff" class="sapUiTinyMarginEnd" press="onClWbItem"/>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<List class="sapUiSizeCozy listcss" id="id_WBItemsList" items="{oMDItemModel>/}" mode="MultiSelect">
+				<items >
+					<CustomListItem>
+						<content>
+							<!--<l:Grid defaultSpan="L12 M12 S12">-->
+							<!--	<l:content>-->
+							<Panel class="Inbound_Panel InboundPanelContent">
+								<content>
+									<HBox width="100%">
+										<VBox width="40%" class="sapUiTinyMarginBegin">
+											<Label design="Bold" text="{i18n>ItemNo}"></Label>
+											<Text text="{oMDItemModel>Zeile}"></Text>
+											<Label design="Bold" text="{i18n>Pmblnr}"></Label>
+											<Text text="{oMDItemModel>Pmblnr}"></Text>
+										</VBox>
+										<VBox width="10%"></VBox>
+										<VBox width="40%">
+											<Label design="Bold" text="{i18n>Material}"></Label>
+											<Text text="{path:'oMDItemModel>Matnr',formatter:'LoadingConfirmation.model.formatter.LeadingZero'}"></Text>
+											<Label design="Bold" text="{i18n>Label10}"></Label>
+											<Text text="{oMDItemModel>Makt}"></Text>
+										</VBox>
+									</HBox>
+								</content>
+								<!--<layoutData>-->
+								<!--	<l:GridData span="L6 M6 S6"/>-->
+								<!--</layoutData>-->
+							</Panel>
+							<!--	</l:content>-->
+							<!--</l:Grid>-->
+						</content>
+					</CustomListItem>
+				</items>
+			</List>
+		</content>
+		<endButton>
+			<Button press="onCloseWbItem" text="{i18n>OK}"></Button>
+			<!--<Button press="onClWbItem" text="{i18n>Cancel}"></Button>-->
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

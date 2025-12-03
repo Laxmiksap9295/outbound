@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>TransType}" class="sapUiPopupWithPadding" items="{oTTF4Model>/}" search="onTTsearch" liveChange="onTTsearch" confirm="fnTTconfirm"
+		cancel="fncancel">
+		<StandardListItem title="{oTTF4Model>Ttype}" />
+	</SelectDialog>
+</core:FragmentDefinition>

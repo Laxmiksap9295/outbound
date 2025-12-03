@@ -1,0 +1,69 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns="sap.m"
+	controllerName="LoadingConfirmation.controller.Status" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page  showHeader="false" class=" cl_page">
+				<content>
+					<Bar class="StatusPage">
+						<contentLeft>
+							<Image src="" id="id_homenew" press="onBackPress" class="cl_homeclas sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
+							<!--	<Button icon="sap-icon://home" press="onBackPress" class="BtnIcond uy"/>-->
+							<Text text="{i18n>Status}" class="sText"></Text>
+						</contentLeft>
+						<contentMiddle></contentMiddle>
+						<contentRight>
+							<Image id="id_logo" class="cl_logo sapUiTinyMarginEnd"/>
+						</contentRight>
+					</Bar>
+					<l:HorizontalLayout allowWrapping="true" class="sapUiSmallMarginTop sapUiSmallMarginBegin">
+						<GenericTile class="cl_tile123" header="{i18n>PendingPicklist}">
+							<tileContent>
+								<TileContent footer="Count">
+									<content>
+										<NumericContent value="{Tile>/PendingQr}" icon="sap-icon://pending"/>
+									</content>
+								</TileContent>
+							</tileContent>
+						</GenericTile>
+						<GenericTile class="cl_tile123 sapUiSmallMarginBegin sapUiSmallMarginTop" header="{i18n>CompletedPicklistCount}">
+							<tileContent>
+								<TileContent footer="Count">
+									<content>
+										<NumericContent value="{Tile>/CompletedQr}" icon="sap-icon://complete"/>
+									</content>
+								</TileContent>
+							</tileContent>
+						</GenericTile>
+						<GenericTile class="cl_tile123 sapUiSmallMarginBegin sapUiSmallMarginTop" header="{i18n>QRCodeYetScan}" subheader="{i18n>48GHrs}">
+							<tileContent>
+								<TileContent footer="Count">
+									<content>
+										<NumericContent value="{Tile>/Qrcode49}" icon="sap-icon://future"/>
+									</content>
+								</TileContent>
+							</tileContent>
+						</GenericTile>
+						<GenericTile class="cl_tile123 sapUiSmallMarginBegin sapUiSmallMarginTop" header="{i18n>QRCodeYetScan}" subheader="{i18n>48LHrs}">
+							<tileContent>
+								<TileContent footer="Count">
+									<content>
+										<NumericContent value="{Tile>/Qrcode48}" icon="sap-icon://past"/>
+									</content>
+								</TileContent>
+							</tileContent>
+						</GenericTile>
+						<GenericTile class="cl_tile123 sapUiSmallMarginBegin sapUiSmallMarginTop" header="{i18n>QRCodeYetScan}" subheader="{i18n>5LHrs}">
+							<tileContent>
+								<TileContent footer="Count">
+									<content>
+										<NumericContent value="{Tile>/Qrcode5}" icon="sap-icon://past"/>
+									</content>
+								</TileContent>
+							</tileContent>
+						</GenericTile>
+					</l:HorizontalLayout>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

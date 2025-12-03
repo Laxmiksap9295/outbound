@@ -1,0 +1,319 @@
+<mvc:View controllerName="LoadingConfirmation.controller.TAT" xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+	xmlns:viz.data="sap.viz.ui5.data" xmlns:viz="sap.viz.ui5.controls" xmlns:core="sap.ui.core">
+	<App>
+		<pages>
+			<Page showHeader="false" class=" cl_page">
+				<Bar class="StatusPage">
+					<contentLeft>
+						<Image src="" id="id_homenew" press="onBackPress" class="cl_homeclas sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
+						<!--	<Button icon="sap-icon://home" press="onBackPress" class="BtnIcond uy"/>-->
+						<Text text="{i18n>TATReport}" class="sText"></Text>
+					</contentLeft>
+					<contentMiddle>
+						<Text text="{localModel>/plant} - {localModel>/plantDesc}" class="sText"/>
+					</contentMiddle>
+					<contentRight>
+						<Image id="id_logo" class="cl_logo sapUiTinyMarginEnd"/>
+					</contentRight>
+				</Bar>
+				<Toolbar class="sapUiTinyMarginBegin sapUiTinyMarginTop RemoverBoderBottom" height="3rem" width="95%">
+					<Label text="{i18n>GateEntryDate}" class="sapUiSmallMarginBottom Label_CP "></Label>
+					<DatePicker change="fnLoadTATData" id="id_gatedatewith" width="10%" class="sapUiSizeCompact InputPlaceholder_CP " 
+						valueFormat="YYYY-MM-ddT00:00:00" enabled="true"></DatePicker>
+					<ToolbarSpacer></ToolbarSpacer>
+					<Label text="{i18n>GateEntryWeek}" class="sapUiSmallMarginBottom Label_CP "></Label>
+					<DatePicker change="fnLoadTATData" id="id_gateweek" width="10%" class="sapUiSizeCompact InputPlaceholder_CP " 
+						valueFormat="YYYY-MM-ddT00:00:00" enabled="true"></DatePicker>
+					<ToolbarSpacer></ToolbarSpacer>
+					<Label text="{i18n>GateEntryMon}" class="sapUiSmallMarginBottom Label_CP "></Label>
+					<Select id="id_gatemonth" class="sapUiSizeCompact InputPlaceholder_selct" width="11%" change="fnLoadTATData" visible="true">
+						<core:Item key="" text=""/>
+						<core:Item key="01" text="{i18n>jan}"/>
+						<core:Item key="02" text="{i18n>feb}"/>
+						<core:Item key="03" text="{i18n>mar}"/>
+						<core:Item key="04" text="{i18n>apr}"/>
+						<core:Item key="05" text="{i18n>may}"/>
+						<core:Item key="06" text="{i18n>jun}"/>
+						<core:Item key="07" text="{i18n>jul}"/>
+						<core:Item key="08" text="{i18n>aug}"/>
+						<core:Item key="09" text="{i18n>sep}"/>
+						<core:Item key="10" text="{i18n>oct}"/>
+						<core:Item key="11" text="{i18n>nov}"/>
+						<core:Item key="12" text="{i18n>dec}"/>
+					</Select>
+				<Select id="id_Year" class="sapUiSizeCompact InputPlaceholder_selct" width="11%" change="fnLoadTATData" visible="true">
+						<core:Item key="2020" text="{i18n>2020}"/>
+						<core:Item key="2021" text="{i18n>2021}"/>
+						<core:Item key="2022" text="{i18n>2022}"/>
+						<core:Item key="2023" text="{i18n>2023}"/>
+						<core:Item key="2024" text="{i18n>2024}"/>
+						<core:Item key="2025" text="{i18n>2025}"/>
+						<core:Item key="2026" text="{i18n>2026}"/>
+						<core:Item key="2027" text="{i18n>2027}"/>
+						<core:Item key="2028" text="{i18n>2028}"/>
+						<core:Item key="2029" text="{i18n>2029}"/>
+						<core:Item key="2030" text="{i18n>2030}"/>
+					</Select>
+				</Toolbar>
+				<l:VerticalLayout width="100%" class="gridWrapper">
+					<l:Grid containerQuery="true" class="Grid GridCss GridCss1" width="100%">
+						<VBox >
+							<Toolbar class=" StatusPage sapUiTinyMarginTop" height="2rem">
+								<VBox justifyContent="Center" width="100%" alignContent="Center" alignItems="Center">
+									<Text text="{i18n>DailyTAT}" class="HTextCss"></Text>
+								</VBox>
+							</Toolbar>
+							<Toolbar class=" backCss Outline" height="11rem" id="id_Daily">
+								<viz:VizFrame height='100%' width="100%" vizType='pie' selectData="fnDailypress" class="title" id="idVizFrame">
+									<viz:dataset >
+										<viz.data:FlattenedDataset data="{oDailyyModel>/Data}">
+											<viz.data:dimensions >
+												<viz.data:DimensionDefinition name="Status" value="{Data>Time}"/>
+											</viz.data:dimensions>
+											<viz.data:measures>
+												<viz.data:MeasureDefinition name="CountQID" value="{Data>Count}"/>
+											</viz.data:measures>
+										</viz.data:FlattenedDataset>
+									</viz:dataset>
+									<viz:feeds>
+										<viz.feeds:FeedItem uid="size" type="Measure" values="CountQID"/>
+										<viz.feeds:FeedItem uid="color" type="Dimension" values="Status"/>
+									</viz:feeds>
+								</viz:VizFrame>
+							</Toolbar>
+							<Toolbar class="backCss Outline" height="2rem">
+								<Text text="{i18n>Period}" class="FontCss"></Text>
+								<ToolbarSpacer></ToolbarSpacer>
+							 
+								<Text text="" class="FontCss" id="Id_DailyPeriod"/>
+							</Toolbar >
+							<Toolbar class="backCss Outline" height="2rem">
+								<Text text="{i18n>Average}" class="FontCss"></Text>
+								<ToolbarSpacer></ToolbarSpacer>
+							 
+								<Text text="" class="FontCss" id="Id_DailyAvg"/>
+							</Toolbar >
+							<Toolbar class="backCss Outline" height="2rem">
+								<Text text="{i18n>VechCou}" class="FontCss"></Text>
+								<ToolbarSpacer></ToolbarSpacer>
+								<Text text="" id="Id_DailyVechileCount" class="FontCss"></Text>
+							</Toolbar >
+							<Toolbar class="backCss Outline" height="2rem">
+								<Text text="{i18n>MinTAT}" class="FontCss"></Text>
+								<ToolbarSpacer></ToolbarSpacer>
+								<Text text="" id="Id_DailyMinTAt" class="FontCss"></Text>
+							</Toolbar >
+							<Toolbar class="backCss Outline" height="2rem">
+								<Text text="{i18n>MaxTAT}" class="FontCss"></Text>
+								<ToolbarSpacer></ToolbarSpacer>
+								<Text text="" id="Id_DailyMaxTAt" class="FontCss"></Text>
+							</Toolbar >
+							<layoutData>
+								<l:GridData span="L4 M12 S12"/>
+							</layoutData>
+						</VBox >
+						<VBox >
+							<Toolbar class=" StatusPage sapUiTinyMarginTop" height="2rem">
+								<VBox justifyContent="Center" width="100%" alignContent="Center" alignItems="Center">
+									<Text text="{i18n>WeeklyTAT}" class="HTextCss"></Text>
+								</VBox>
+							</Toolbar>
+							<Toolbar class=" backCss Outline" height="11rem">
+								<viz:VizFrame title="" height='100%' width="100%" vizType='pie' selectData="fnWeeklypress" class="title" id="idVizFrame1">
+									<viz:dataset>
+										<viz.data:FlattenedDataset data="{oWeeklyModel>/Data}">
+											<viz.data:dimensions>
+												<viz.data:DimensionDefinition name="Status" value="{Data>Time}"/>
+											</viz.data:dimensions>
+											<viz.data:measures>
+												<viz.data:MeasureDefinition name="CountQID" value="{Data>Count}"/>
+											</viz.data:measures>
+										</viz.data:FlattenedDataset>
+									</viz:dataset>
+									<viz:feeds>
+										<viz.feeds:FeedItem uid="size" type="Measure" values="CountQID"/>
+										<viz.feeds:FeedItem uid="color" type="Dimension" values="Status"/>
+									</viz:feeds>
+								</viz:VizFrame>
+							</Toolbar>
+							<Toolbar class="backCss Outline" height="2rem">
+								<Text text="{i18n>Period}" class="FontCss"></Text>
+								<ToolbarSpacer></ToolbarSpacer>
+								<Text text="" class="FontCss" id="Id_WeekPeriod"/>
+							</Toolbar >
+							<Toolbar class="backCss Outline" height="2rem">
+								<Text text="{i18n>Average}" class="FontCss"></Text>
+								<ToolbarSpacer></ToolbarSpacer>
+								<Text text="" id="Id_WeeklyAvg" class="FontCss"></Text>
+							</Toolbar >
+							<Toolbar class="backCss Outline" height="2rem">
+								<Text text="{i18n>VechCou}" class="FontCss"></Text>
+								<ToolbarSpacer></ToolbarSpacer>
+								<Text text="" id="Id_WeeklyVechileCount" class="FontCss"></Text>
+							</Toolbar >
+							<Toolbar class="backCss Outline" height="2rem">
+								<Text text="{i18n>MinTAT}" class="FontCss"></Text>
+								<ToolbarSpacer></ToolbarSpacer>
+								<Text text="" id="Id_WeeklyMinTAt" class="FontCss"></Text>
+							</Toolbar >
+							<Toolbar class="backCss Outline" height="2rem">
+								<Text text="{i18n>MaxTAT}" class="FontCss"></Text>
+								<ToolbarSpacer></ToolbarSpacer>
+								<Text text="" id="Id_WeeklyMaxTAt" class="FontCss"></Text>
+							</Toolbar >
+							<layoutData>
+								<l:GridData span="L4 M12 S12"/>
+							</layoutData>
+						</VBox >
+						<VBox >
+							<Toolbar class=" StatusPage sapUiTinyMarginTop" height="2rem">
+								<VBox justifyContent="Center" width="100%" alignContent="Center" alignItems="Center">
+									<Text text="{i18n>MonthlyTAT}" class="HTextCss"></Text>
+								</VBox>
+							</Toolbar>
+							<Toolbar class=" backCss Outline" height="11rem">
+								<viz:VizFrame id="idVizFrame2" height='110%' width="110%" vizType='pie' selectData="fnMonthlypress" class="title">
+									<viz:dataset>
+										<viz.data:FlattenedDataset data="{oMonthlyModel>/Data}">
+											<viz.data:dimensions>
+												<viz.data:DimensionDefinition name="Status" value="{Data>Time}"/>
+											</viz.data:dimensions>
+											<viz.data:measures>
+												<viz.data:MeasureDefinition name="CountQID" value="{Data>Count}"/>
+											</viz.data:measures>
+										</viz.data:FlattenedDataset>
+									</viz:dataset>
+									<viz:feeds>
+										<viz.feeds:FeedItem uid="size" type="Measure" values="CountQID"/>
+										<viz.feeds:FeedItem uid="color" type="Dimension" values="Status"/>
+									</viz:feeds>
+								</viz:VizFrame>
+							</Toolbar>
+							<Toolbar class="backCss Outline" height="2rem">
+								<Text text="{i18n>Period}" class="FontCss"></Text>
+								<ToolbarSpacer></ToolbarSpacer>
+							
+								<Text text="" class="FontCss" id="Id_MonthlyPeriod"/>
+							</Toolbar >
+							<Toolbar class="backCss Outline" height="2rem">
+								<Text text="{i18n>Average}" class="FontCss"></Text>
+								<ToolbarSpacer></ToolbarSpacer>
+								<Text text="" id="Id_MonthlyAvg" class="FontCss"></Text>
+							</Toolbar >
+							<Toolbar class="backCss Outline" height="2rem">
+								<Text text="{i18n>VechCou}" class="FontCss"></Text>
+								<ToolbarSpacer></ToolbarSpacer>
+								<Text text="" id="Id_MonthlyVechileCount" class="FontCss"></Text>
+							</Toolbar >
+							<Toolbar class="backCss Outline" height="2rem">
+								<Text text="{i18n>MinTAT}" class="FontCss"></Text>
+								<ToolbarSpacer></ToolbarSpacer>
+								<Text text="" id="Id_MonthlyMinTAt" class="FontCss"></Text>
+							</Toolbar >
+							<Toolbar class="backCss Outline" height="2rem">
+								<Text text="{i18n>MaxTAT}" class="FontCss"></Text>
+								<ToolbarSpacer></ToolbarSpacer>
+								<Text text="" id="Id_MonthlyMaxTAt" class="FontCss"></Text>
+							</Toolbar >
+							<layoutData>
+								<l:GridData span="L4 M12 S12"/>
+							</layoutData>
+						</VBox >
+					</l:Grid>
+				</l:VerticalLayout>
+				<Toolbar class="sapUiTinyMarginBegin RemoverBoderBottom" height="3rem" width="100%">
+					<!--<HBox width="48%">-->
+					<!--<Toolbar width="100%" height="2rem" class="RemoverBoderBottom">-->
+					<Text text="{i18n>TATDet}" class="BoldTxtCss sapUiSmallMarginBegin"></Text>
+					<ToolbarSpacer></ToolbarSpacer>
+					<Title id="id_tableHeader" text="" class="Cl_TitleTab"/>
+					<ToolbarSpacer/>
+					<Button tooltip="{i18n>SendasEmail}" press="fnSendEMail" type="Emphasized" class="sapUiSizeCompact sapUiMediumMarginEnd"
+						text="{i18n>SendasEmail}" icon="sap-icon://email"></Button>
+					<Button tooltip="{i18n>DownLoadExcel}" press="fnDownload" type="Emphasized" class="sapUiSizeCompact sapUiMediumMarginEnd"
+						text="{i18n>DownLoadExcel}" icon="sap-icon://excel-attachment"></Button>
+				</Toolbar>
+				<ScrollContainer height="50%" vertical="true" focusable="true">
+					<Table inset="false" id="id_Table" items="{oTable>/data}" class="TableH">
+						<columns class="StatusPage">
+							<Column demandPopin="true" minScreenWidth="tablet" class="StatusPage sapUiSmallMarginBegin">
+								<Text text="{i18n>VecNo}" class="tabtextCss sapUiSmallMarginBegin"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="tablet" visible="false" class="StatusPage sapUiSmallMarginBegin">
+								<Text text="{i18n>Plant}" class="tabtextCss sapUiSmallMarginBegin"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="tablet" visible="false" class="StatusPage sapUiSmallMarginBegin">
+								<Text text="{i18n>ReportingTime}" class="tabtextCss sapUiSmallMarginBegin"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="tablet" visible="false" class="StatusPage sapUiSmallMarginBegin">
+								<Text text="{i18n>ReportingDate}" class="tabtextCss sapUiSmallMarginBegin"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="tablet">
+								<Text text="{i18n>GateED}" class="tabtextCss sapUiSmallMarginBegin"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="tablet">
+								<Text text="{i18n>GateET}" class="tabtextCss sapUiSmallMarginBegin"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="tablet">
+								<Text text="{i18n>GateExitd}" class="tabtextCss sapUiSmallMarginBegin"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="tablet">
+								<Text text="{i18n>GateExitt}" class="tabtextCss sapUiSmallMarginBegin"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="tablet">
+								<Text text="{i18n>TAT}" class="tabtextCss sapUiSmallMarginBegin"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="tablet">
+								<Text text="{i18n>delno}" class="tabtextCss sapUiSmallMarginBegin"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="tablet">
+								<Text text="{i18n>Shippat}" class="tabtextCss sapUiSmallMarginBegin"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="tablet">
+								<Text text="{i18n>ShippatD}" class="tabtextCss sapUiSmallMarginBegin"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="tablet">
+								<Text text="{i18n>Remarks}" class="tabtextCss sapUiSmallMarginBegin"/>
+							</Column>
+							<Column demandPopin="true" minScreenWidth="tablet">
+								<Text text="{i18n>CurrStat}" class="tabtextCss sapUiSmallMarginBegin"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<!--Vechile No-->
+									<Text text="{oTable>Vehno}" class="FontCss sapUiSmallMarginBegin"/>
+									<Text text="{oTable>Pname}" class="FontCss sapUiSmallMarginBegin"/>
+									<Text text="{ path:'oTable>Redat',formatter: 'LoadingConfirmation.model.formatter.fnDateConversion'}" class="FontCss sapUiSmallMarginBegin"/>
+									<Text text="{ path:'oTable>Retim',formatter: 'LoadingConfirmation.model.formatter.fnmsToTime'}" class="FontCss sapUiSmallMarginBegin"/>
+									<!--Gate Entry Date-->
+									<Text text="{ path:'oTable>Erdat',formatter: 'LoadingConfirmation.model.formatter.fnDateConversion'}" class="FontCss sapUiSmallMarginBegin"/>
+									<!--Gate Entry Time-->
+									<Text text="{ path:'oTable>Ertim',formatter: 'LoadingConfirmation.model.formatter.fnmsToTime'}" class="FontCss sapUiSmallMarginBegin"/>
+									<!--Gate Exit Date-->
+									<Text text="{ path:'oTable>Aedat',formatter: 'LoadingConfirmation.model.formatter.fnDateConversion'}" class="FontCss sapUiSmallMarginBegin"/>
+									<!--Gate Exit Time-->
+									<Text text="{ path:'oTable>Aetim',formatter: 'LoadingConfirmation.model.formatter.fnmsToTime'}" class="FontCss sapUiSmallMarginBegin"/>
+									<!--TAT-->
+									<Text text="{ path:'oTable>Tat'}" class="FontCss "/>
+									<!--Delivery No-->
+									<Text text="{oTable>Vbeln}" class="FontCss sapUiSmallMarginBegin"/>
+									<!--Ship To Party-->
+									<Text text="{oTable>Kunnr}" class="FontCss sapUiSmallMarginBegin"/>
+									<!--Ship To Party Descrip-->
+									<Text text="{oTable>Name1}" class="FontCss sapUiSmallMarginBegin"/>
+									<!--Remark-->
+									<Text text="{oTable>Remark}" class="FontCss sapUiSmallMarginBegin"/>
+									<!--Status-->
+									<Text text="{ path:'oTable>Config4',formatter: 'LoadingConfirmation.model.formatter.fnStatus'}" class="FontCss sapUiSmallMarginBegin"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</ScrollContainer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

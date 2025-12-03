@@ -1,0 +1,8 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>Storagelocation}"  class=" Dialog" items="{oStorage>/}" search="onSearchStorage"
+		confirm="onConfirmStorage" liveChange="onSearchStorage" >
+		<StandardListItem  title="{oStorage>Lgort}" description="{oStorage>Lgobe}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

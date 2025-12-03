@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>Batch}" class="sapUiPopupWithPadding sapUiSizeCompact" items="{JMBatch>/}" liveChange="onsearchBatch"
+		search="onsearchBatch" confirm="fnconfirmBatch" cancel="fnconfirmBatch">
+		<StandardListItem title="{JMBatch>Charg}" description="{JMBatch>Clabs}" />
+	</SelectDialog>
+</core:FragmentDefinition>

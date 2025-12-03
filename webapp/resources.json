@@ -1,0 +1,325 @@
+{
+    "resources": [
+        {
+            "name": "index.html"
+        },
+        {
+            "name": "model/xlsx.js"
+        },
+        {
+            "name": "model/Jhxlx.js"
+        },
+        {
+            "name": "model/filesaver.js"
+        },
+        {
+            "name": "model/xlsx.full.min.js"
+        },
+        {
+            "name": "model/models.js"
+        },
+        {
+            "name": "model/formatter.js"
+        },
+        {
+            "name": "model/jszip.js"
+        },
+        {
+            "name": "lib/whsign.js"
+        },
+        {
+            "name": "lib/html2canvas.min.js"
+        },
+        {
+            "name": "lib/signature.js"
+        },
+        {
+            "name": "lib/canvas2image.js"
+        },
+        {
+            "name": "lib/custom.js"
+        },
+        {
+            "name": "i18n/i18n_fr.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "i18n/i18n_tr.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "i18n/i18n.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "i18n/i18n_pt.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "localService/metadata.xml"
+        },
+        {
+            "name": "localService/ZGW_GT_SD_DELIVERY_DET_GE_SRV_01/metadata.xml"
+        },
+        {
+            "name": "resources.json",
+            "merged": true
+        },
+        {
+            "name": "ScannerAppLibrary/index.min.js"
+        },
+        {
+            "name": "ScannerAppLibrary/quagga.min.js"
+        },
+        {
+            "name": "Component-preload.js",
+            "merged": true
+        },
+        {
+            "name": "controller/App.controller.js"
+        },
+        {
+            "name": "controller/Deliverycheck.controller.js"
+        },
+        {
+            "name": "controller/TOConfirmNew.controller.js"
+        },
+        {
+            "name": "controller/Picklist.controller.js"
+        },
+        {
+            "name": "controller/TAT.controller.js"
+        },
+        {
+            "name": "controller/StatusUpdate.controller.js"
+        },
+        {
+            "name": "controller/GateExit.controller.js"
+        },
+        {
+            "name": "controller/completedPicklist.controller.js"
+        },
+        {
+            "name": "controller/GateEntry.controller.js"
+        },
+        {
+            "name": "controller/TOConfirm.controller.js"
+        },
+        {
+            "name": "controller/Dashboard.controller.js"
+        },
+        {
+            "name": "controller/Status.controller.js"
+        },
+        {
+            "name": "manifest.json"
+        },
+        {
+            "name": "package.json"
+        },
+        {
+            "name": "css/style.css"
+        },
+        {
+            "name": ".project.json"
+        },
+        {
+            "name": ".user.project.json"
+        },
+        {
+            "name": "view/Status.view.xml"
+        },
+        {
+            "name": "view/TAT.view.xml"
+        },
+        {
+            "name": "view/StatusUpdate.view.xml"
+        },
+        {
+            "name": "view/GateEntry.view.xml"
+        },
+        {
+            "name": "view/completedPicklist.view.xml"
+        },
+        {
+            "name": "view/GateExit.view.xml"
+        },
+        {
+            "name": "view/Picklist.view.xml"
+        },
+        {
+            "name": "view/TOConfirm.view.xml"
+        },
+        {
+            "name": "view/Dashboard.view.xml"
+        },
+        {
+            "name": "view/TOConfirmNew.view.xml"
+        },
+        {
+            "name": "view/App.view.xml"
+        },
+        {
+            "name": "view/Deliverycheck.view.xml"
+        },
+        {
+            "name": ".che/project.json"
+        },
+        {
+            "name": "neo-app.json"
+        },
+        {
+            "name": "Images/Delete.png"
+        },
+        {
+            "name": "Images/field3.jpg"
+        },
+        {
+            "name": "Images/bg5838.jpg"
+        },
+        {
+            "name": "Images/-e-Factory.png"
+        },
+        {
+            "name": "Images/attachment.png"
+        },
+        {
+            "name": "Images/-e-user.png"
+        },
+        {
+            "name": "Images/field1.jpg"
+        },
+        {
+            "name": "Images/qr-code.png"
+        },
+        {
+            "name": "Images/Add.png"
+        },
+        {
+            "name": "Images/calendar.png"
+        },
+        {
+            "name": "Images/barcode.png"
+        },
+        {
+            "name": "Images/add-img.png"
+        },
+        {
+            "name": "Images/WB_DR1.png"
+        },
+        {
+            "name": "Images/GateExit.png"
+        },
+        {
+            "name": "Images/box.png"
+        },
+        {
+            "name": "Images/home.png"
+        },
+        {
+            "name": "Images/GateEntry.png"
+        },
+        {
+            "name": "Images/camera.png"
+        },
+        {
+            "name": "Component.js"
+        },
+        {
+            "name": "package-lock.json"
+        },
+        {
+            "name": "Gruntfile.js"
+        },
+        {
+            "name": "Json/Localdata.json"
+        },
+        {
+            "name": "fragment/DeliveryList.fragment.xml"
+        },
+        {
+            "name": "fragment/RePrint.fragment.xml"
+        },
+        {
+            "name": "fragment/Ttype.fragment.xml"
+        },
+        {
+            "name": "fragment/StorageFilter.fragment.xml"
+        },
+        {
+            "name": "fragment/ItemDetailsTONew.fragment.xml"
+        },
+        {
+            "name": "fragment/VehType.fragment.xml"
+        },
+        {
+            "name": "fragment/Dialog.fragment.xml"
+        },
+        {
+            "name": "fragment/ItemDetails.fragment.xml"
+        },
+        {
+            "name": "fragment/Batch.fragment.xml"
+        },
+        {
+            "name": "fragment/ItemDetailsTO.fragment.xml"
+        },
+        {
+            "name": "fragment/ReasonGE.fragment.xml"
+        },
+        {
+            "name": "fragment/WeighBridgeDetails.fragment.xml"
+        },
+        {
+            "name": "fragment/LaserScan.fragment.xml"
+        },
+        {
+            "name": "fragment/Signature.fragment.xml"
+        },
+        {
+            "name": "fragment/MatDocItems.fragment.xml"
+        },
+        {
+            "name": "fragment/Plant.fragment.xml"
+        },
+        {
+            "name": "fragment/Material.fragment.xml"
+        },
+        {
+            "name": "fragment/RPPlant.fragment.xml"
+        },
+        {
+            "name": "fragment/ReasonLP.fragment.xml"
+        },
+        {
+            "name": "fragment/RemarksItem.fragment.xml"
+        },
+        {
+            "name": "fragment/Transporter.fragment.xml"
+        },
+        {
+            "name": "fragment/Mail.fragment.xml"
+        },
+        {
+            "name": "fragment/WeighBridge.fragment.xml"
+        },
+        {
+            "name": "fragment/SaleContract.fragment.xml"
+        },
+        {
+            "name": "fragment/MatDocList.fragment.xml"
+        },
+        {
+            "name": "fragment/Gate.fragment.xml"
+        },
+        {
+            "name": "fragment/VehicleNo.fragment.xml"
+        },
+        {
+            "name": "fragment/Reason.fragment.xml"
+        },
+        {
+            "name": "fragment/CaptureImage.fragment.xml"
+        }
+    ]
+}

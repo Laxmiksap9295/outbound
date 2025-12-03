@@ -1,0 +1,32 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" class="sapUiSizeCompact" xmlns:ndc="sap.ndc"
+	xmlns:lib="LoadingConfirmation.lib">
+	<Dialog xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" class="SignatureDialog" title="" id="SignatureDialog">
+		<customHeader>
+			<Bar>
+				<contentMiddle>
+					<Label text="{i18n>Signature}" class="Label_Frag"></Label>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://decline" class="zsapMBtnIconClose" press="onSignatureClose"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<Switch state="true" class="SwitchStyle sapUiSmallMarginBegin" id="id_Options" customTextOn="{i18n>WHKeeper}" customTextOff="{i18n>Driver}"
+				change="fnResetChange">
+				<layoutData>
+					<FlexItemData growFactor="5"/>
+				</layoutData>
+			</Switch>
+			<!--<Button icon="sap-icon://decline"  class="zsapMBtnIconClose"></Button>-->
+			<lib:custom class="sapUiTinyMarginBottom cl_signature"></lib:custom>
+			<lib:custom class=" sapUiTinyMarginBottom cl_signature"></lib:custom>
+			<HBox class="sapUiLargeMarginBegin">
+				<Button width="150px" text="{i18n>Ok}" type="Unstyled" class="cl_buttonok sapUiSizeCompact sapUiSmallMarginBottom" press="_SignatureSave"></Button>
+				<Button width="150px" text="{i18n>Clear}" type="Unstyled" class="cl_buttonclear sapUiSizeCompact sapUiSmallMarginBottom"
+					press="_SignatureCancel"/>
+				<!--<Button width="150px" text="{i18n>Cancel}" type="Unstyled" class="cl_buttonclear" press="OnCancelPress"/>-->
+			</HBox>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

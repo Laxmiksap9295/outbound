@@ -1,0 +1,32 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:m="sap.ui.commons.layout" xmlns:ndc="sap.ndc"
+	xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Dialog verticalScrolling="true" class="pageDialog" stretchOnPhone="false" type="Standard">
+		<customHeader>
+			<Bar>
+				<contentMiddle>
+					<Title text="{i18n>KindScanNow}" class="cl_downloadmasterlabel"></Title>
+				</contentMiddle>
+			</Bar>
+		</customHeader>
+		<content>
+			<!--<VBox justifyContent="Center">-->
+			<!--<RadioButtonGroup selectedIndex="0" select="onPrintRadioButtons">-->
+			<!--	<buttons>-->
+			<!--		<RadioButton visible="false"/>-->
+			<!--		<RadioButton text="With Weighbridge" class="CancelRadioBtn"/>-->
+			<!--		<RadioButton text="Without Weighbridge" class="CancelRadioBtn"/>-->
+			<!--	</buttons>-->
+			<!--</RadioButtonGroup>-->
+			<!--</VBox>-->
+			<VBox fitContainer="true" justifyContent="Center" alignItems="Center" alignContent="Center">
+				<!--<Text text="Kindly Scan now"></Text>-->
+				<Input id="test"  class="scanInput" liveChange="onChangeBarcodeScanner"></Input>
+				<!--<Text text="{i18n>PressHardcodeButton}"/>-->
+			</VBox>
+		</content>
+		<endButton>
+			<Button text="{i18n>OK}" press="fnBarcode"></Button>
+			<!--<Button text="{i18n>Cancel}" press="onMessageClose"></Button>-->
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

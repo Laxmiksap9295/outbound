@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>Material}" class="sapUiPopupWithPadding" items="{JmMatnr>/}" search="onMatnrsearch" liveChange="onMatnrsearch"
+		confirm="fnMatnrconfirm" cancel="fncancel" multiSelect="true">
+		<StandardListItem title="{path:'JmMatnr>Matnr',formatter:'LoadingConfirmation.model.formatter.LeadingZero'}" description="{JmMatnr>Maktx}"/>
+	</SelectDialog>
+	<!---->
+</core:FragmentDefinition>

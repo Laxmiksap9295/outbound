@@ -1,0 +1,98 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:m="sap.ui.commons.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core" xmlns:k="sap.ui.layout.form">
+	<Dialog verticalScrolling="true" class="pageDialogItem" type="Standard">
+		<customHeader>
+			<Bar>
+				<contentMiddle>
+					<Label text="{i18n>ItemDetailsTO}" class="Label_Frag" id="itemDetails"></Label>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://decline" press="onCancelItemClose" class="zsapMBtnIconClose"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<Label id="id_FragMat" class="sapUiTinyMarginBegin Form_Label"></Label>
+			<HBox width="100%">
+				<VBox width="50%" class="sapUiSmallMarginBegin">
+					<Label text="{i18n>TotDeliveryQty}" class="Form_Label Form_Label_Wrapping"></Label>
+					<Input id="id_LfimgVal" class="InputPlaceholder_CP inputplant" editable="false" Change="onChangeDeliveryQty" submit="onChangeDeliveryQty"
+						liveChange="onChangeDeliveryQty" width="90%"></Input>
+					<Label text="{i18n>Material}" class="Form_Label Form_Label_Wrapping" visible="true"></Label>
+					<Input value="{BatchItems>/Items/0/Maktx}" editable="false" width="90%" class="InputPlaceholder_CP inputplant" visible="true"></Input>
+				</VBox>
+				<VBox width="50%">
+					<Label text="{i18n>OpenQty}" class="Form_Label Form_Label_Wrapping" visible="true"></Label>
+					<Input id="id_OpQty" class="InputPlaceholder_CP inputplant" width="90%" visible="true" editable="false"></Input>
+					<Label text="{i18n>Lgpla}" class="Form_Label Form_Label_Wrapping" visible="true"></Label>
+					<Input value="{BatchItems>/Items/0/Lgpla}" class="InputPlaceholder_CP inputplant" width="90%" visible="true" editable="false"></Input>
+					<HBox height="1.5rem" visible="true"></HBox>
+				</VBox>
+			</HBox>
+			<Toolbar class="firsttoolbarCss" height="2rem">
+				<ToolbarSpacer/>
+				<Button icon="sap-icon://bar-code" text="{i18n>Scan}" type="Emphasized" enabled="true" visible="true"
+					class="sapUiSmallMarginBegin sapUiSizeCompact" tooltip="{i18n>Scan}" press="onScanQRValue"></Button>
+				<ToolbarSpacer/>
+			</Toolbar>
+			<l:Grid defaultSpan="L12 M12 S12" class="GridClass">
+				<List class="dqcList" items="{BatchItems>/Items}">
+					<headerToolbar>
+						<OverflowToolbar height="0.1rem">
+							<ToolbarSpacer/>
+						</OverflowToolbar>
+					</headerToolbar>
+					<CustomListItem press="onItemPress">
+						<l:Grid defaultSpan="L12 M12 S12" class="Form_Label">
+							<!--Added by Avinash - Design Changes-->
+							<HBox width="100%">
+								<VBox width="45%" class="sapUiSmallMarginBegin">
+									<Label text="{i18n>Batchnumber}" class="Form_Label"></Label>
+									<Input value="{BatchItems>Charg}" class="InputPlaceholder_CP inputplant" enabled="true" showValueHelp="false"
+										valueHelpRequest="fnhandleBatch" editable="false" valueHelpOnly="true" width="90%" visible="true"></Input>
+								</VBox>
+								<VBox width="45%" class="sapUiTinyMarginBegin">
+									<Label text="{i18n>Lenum}" class="Form_Label"></Label>
+									<Input value="{BatchItems>Lenum}" editable="false" class="InputPlaceholder_CP inputplant" enabled="true" visible="true"></Input>
+								</VBox>
+								<VBox width="30%" class="sapUiTinyMarginBegin">
+									<Label text="{i18n>PickingQty}" class="Form_Label"></Label>
+									<!--<HBox>-->
+									<Input value="{BatchItems>Pikmg}" type="Number" class="InputPlaceholder_CP sapUiTinyMarginEnd" change="onChangePickQty" editable="false"
+										width="90%" submit="onChangePickQty" liveChange="onChangePickQty" enabled="true" visible="true"></Input>
+								</VBox>
+								<VBox width="30%" class="sapUiTinyMarginBegin">
+									<Label text="{i18n>Pickuom}" class="Form_Label"></Label>
+									<!--<HBox>-->
+									<Input value="{BatchItems>Vrkme}" class="InputPlaceholder_CP sapUiTinyMarginEnd" editable="false" change="onChangePickQty" width="90%"
+										submit="onChangePickQty" liveChange="onChangePickQty" enabled="true" visible="true"></Input>
+								</VBox>
+								<!--<VBox width="30%" visible="{=${oBatchEnable>/results/0/F4FieldsNav/results/0/Charg01}==='X' ? true : false }">-->
+								<VBox width="20%" visible="true">
+									<HBox height="1.5rem" visible="true"></HBox>
+									<HBox>
+										<!--<Button icon="sap-icon://add" class="sapUiSizeCompact " type="Accept" press="fnAddBatch"/>-->
+										<Button icon="sap-icon://sys-minus" type="Reject" class="sapUiTinyMarginBegin sapUiSizeCompact" press="fnRemoveBatch"/>
+									</HBox>
+								</VBox>
+							</HBox>
+						</l:Grid>
+					</CustomListItem>
+				</List>
+			</l:Grid>
+			<Toolbar >
+				<HBox visible="false" id="id_ReasonChange">
+					<Label text="{i18n>Reason}" required="true" class="Form_Label Form_Label_Wrapping sapUiTinyMarginBegin"></Label>
+					<ComboBox id="id_ReasonLP" class="cl_Combo InputPlaceholder_CP sapUiTinyMarginBeginEnd">
+						<!--<core:Item key="{JMReason>Reason}" text="{JMReason>Reason}"/>-->
+						<core:Item key="{i18n>TypoMistake}" text="{i18n>TypoMistake}"/>
+					</ComboBox>
+				</HBox>
+				<ToolbarSpacer/>
+				<!--<Button width="150px" text="{i18n>Ok}" type="Accept" class="cl_buttonok floatRightMR10" press="onCancelItemClose"-->
+				<!--	visible="{BatchItems>/Save}"></Button>-->
+			</Toolbar>
+			<Button width="150px" text="{i18n>BtTOConfirm}"  type="Unstyled" class="cl_buttonok floatRightMR10" press="onItemConfirm"></Button>
+		</content>
+	</Dialog>
+</core:FragmentDefinition>

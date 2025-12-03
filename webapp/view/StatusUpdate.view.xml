@@ -1,0 +1,46 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form"
+	controllerName="LoadingConfirmation.controller.StatusUpdate" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page showHeader="false" class=" cl_page">
+				<Bar class="StatusPage">
+					<contentLeft>
+						<Image src="" id="id_homenew" press="onBackPress" class="cl_homeclas sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
+						<!--<Button icon="sap-icon://home" press="onBackPress" class="BtnIcond uy"/>-->
+						<Text text="{i18n>StatusUpdate}" class="sText"></Text>
+					</contentLeft>
+					<contentMiddle></contentMiddle>
+					<contentRight>
+						<Image id="id_logo" class="cl_logo sapUiTinyMarginEnd"/>
+					</contentRight>
+				</Bar>
+				<!--<Panel class="Cl_Batch_Panel">-->
+				<content>
+					<f:SimpleForm id="SimpleFormDisplay354" editable="false" layout="ResponsiveGridLayout" labelSpanXL="5" labelSpanL="4" labelSpanM="4"
+						labelSpanS="4" adjustLabelSpan="false" emptySpanXL="2" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+						singleContainerFullSize="false" class="">
+						<f:content>
+							<Label text="{i18n>InDate}" design="Bold" class="sapUiSmallMarginTop "></Label>
+							<DatePicker id="id_InDate"></DatePicker>
+							<Label text="{i18n>VechileNo}" design="Bold" class="sapUiSmallMarginTop "></Label>
+							<Input placeholder="{i18n>VechileNo}" liveChange="onValueHelpPress" class=" Outbound_InputBrd" id="id_InVehicleNo"
+								valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpPress" value=""/>
+							<Label text="{i18n>WeighbridgeID}" design="Bold" class="sapUiSmallMarginTop "></Label>
+							<Input value="" enabled="false" id="id_InWbid" class=" Outbound_InputBrd"></Input>
+							<Label text="{i18n>Reason}" design="Bold" class="sapUiSmallMarginTop " required="true"></Label>
+							<Input value="" class="Outbound_InputBrd" id="id_InReason"></Input>
+						</f:content>
+					</f:SimpleForm>
+				</content>
+				<!--</Panel>-->
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer></ToolbarSpacer>
+						<Button text="{i18n>Check}" press="onPressCheck" class="Outbound_BtnClr1"></Button>
+						<Button id="id_BtnSave" text="{i18n>Save}" press="onStatusSubmit" class="Outbound_BtnClr1" visible="false"></Button>
+					</Toolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

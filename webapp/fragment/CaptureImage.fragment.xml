@@ -1,0 +1,35 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core"  xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" >
+	<Dialog title="{i18n>CaptureImage}" contentHeight="20rem" stretchOnPhone="false">
+		<customHeader>
+			<Bar class="Inbound_Bar">
+				<contentMiddle>
+					<Label text="{i18n>CaptureImage}" class="Inbound_Title" design="Bold"></Label>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://decline" press="onClickImageDecline" tooltip="{i18n>Tooltip2}" class="Inbound_NavBtn"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<RadioButtonGroup id="id_RadioBtn" columns="2" selectedIndex="0" >
+				<buttons>
+					<RadioButton id="DR" text="{i18n>Text8}"/>
+					<RadioButton id="NP" text="{i18n>Text9}" />
+					<RadioButton id="LC" text="{i18n>Text10}"/>
+					<RadioButton id="OT" text="{i18n>Text11}"/>
+				</buttons>
+			</RadioButtonGroup>
+			<u:FileUploader class="cl_fileuploader sapUiSizeCompact" buttonOnly="true" icon="" buttonText="{i18n>Attachments}" iconOnly="false"
+				 uploadUrl="" width="100%" sendXHR="true" multiple="false" change="onUploadComplete" useMultipart="false"
+				uploadAborted="fnUploadAborted" uploadComplete="fnImgUploaded" sameFilenameAllowed="true"></u:FileUploader>
+			<l:VerticalLayout class="sapUiContentPadding" width="100%">
+				<List mode="Delete" items="{MASS>/}" delete="fnDeleteAttachedFiles">
+					<StandardListItem class="cl_attachmentstandardlist" title="{MASS>Fname}"></StandardListItem>
+				</List>
+			</l:VerticalLayout>
+		</content>
+		<endButton>
+			<Button text="{i18n>Ok}" press="fnAddBillClose" class="sapUiResponsiveMargin"></Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

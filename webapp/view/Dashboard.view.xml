@@ -1,0 +1,66 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="LoadingConfirmation.controller.Dashboard"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout">
+	<App>
+		<pages>
+			<Page title="{i18n>Login}" class="cl_page" showHeader="false">
+				<content>
+					<Bar class="StatusPage">
+						<contentLeft>
+							<Button icon="sap-icon://shipping-status" press="onBackPress" class="BtnIcond uy sapUiTinyMarginEnd"/>
+							<Text text="{i18n>QRCodeScanning}" class="sText sText14"></Text>
+						</contentLeft>
+						<contentMiddle>
+							<Text text="{i18n>Plant} : " class="sText sText14"/>
+							<Text id="id_PlantGb" class="sText sText14"/>
+						</contentMiddle>
+						<contentRight>
+								<Image id="id_logo" class="cl_logo sapUiTinyMarginEnd"/>
+								<Button  class="BtnIcond uy" icon="sap-icon://settings" press="onClickPlantF4" visible="false" id="id_SettingPlant"></Button>
+						</contentRight>
+					</Bar>
+					<IconTabBar select="onSelectTabBar" class="sapUiResponsiveContentPadding InboundIconTabBar">
+						<items>
+							<IconTabFilter icon="sap-icon://inventory" class="Inbound_IconFilter" text="{i18n>Outbound}" key="OUT">
+								<content>
+									<Panel id="id_Panel">
+										<content>
+											<List class="Inbound_ListItem">
+												<StandardListItem title="{i18n>GateEntry}" id="id_GateEntryTile" icon="sap-icon://inventory" class="Inbound_ListItem" type="Active"
+													press="fnProcessPress"></StandardListItem>
+												<StandardListItem title="{i18n>OngoingPicklisttoScan}" id="id_ScanPickTile" icon="sap-icon://bar-code" class="Inbound_ListItem"
+													type="Active" press="fnProcessPress"></StandardListItem>
+												<StandardListItem title="{i18n>PendingforPicking}" id="id_PendPickTile" icon="sap-icon://pending" class="Inbound_ListItem" type="Active"
+													press="fnProcessPress"></StandardListItem>
+													<StandardListItem title="{i18n>BinConfrimation}" id="id_BinConfirmationAppTile" icon="sap-icon://bar-code" class="Inbound_ListItem" type="Active"
+													press="fnProcessPress"></StandardListItem>
+													
+													<StandardListItem title="{i18n>OutboundQuality}" id="id_QualityAppTile" icon="sap-icon://documents" class="Inbound_ListItem" type="Active"
+													press="fnProcessPress"></StandardListItem>
+													<StandardListItem title="{i18n>OutboundDocument}" id="id_DocumentAppTile" icon="sap-icon://create-entry-time" class="Inbound_ListItem" type="Active"
+													press="fnProcessPress"></StandardListItem>
+													
+												<StandardListItem title="{i18n>GateExit}" id="id_GateExitTile" icon="sap-icon://shipping-status" class="Inbound_ListItem" type="Active"
+													press="fnProcessPress"></StandardListItem>
+												<StandardListItem title="{i18n>StatusUpdate}" id="id_StatusUpdateTile" icon="sap-icon://complete" class="Inbound_ListItem" type="Active"
+													press="fnProcessPress"></StandardListItem>
+												<StandardListItem title="{i18n>CompletedPicklistDetails}" id="id_CompletedPick" icon="sap-icon://complete" class="Inbound_ListItem"
+													type="Active" press="fnProcessPress"></StandardListItem>
+												<StandardListItem title="{i18n>TATReport}" id="id_TATRep" icon="sap-icon://area-chart" class="Inbound_ListItem" type="Active"
+													press="fnProcessPress"></StandardListItem>
+												<StandardListItem title="{i18n>Status}" id="id_StatTile" icon="sap-icon://complete" class="Inbound_ListItem" type="Active"
+													press="fnProcessPress"></StandardListItem>
+											</List>
+										</content>
+									</Panel>
+								</content>
+							</IconTabFilter>
+							<IconTabFilter icon="sap-icon://inventory" class="Inbound_IconFilter" text="{i18n>Inbound}" key="IN">
+								
+							</IconTabFilter>
+						</items>
+					</IconTabBar>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

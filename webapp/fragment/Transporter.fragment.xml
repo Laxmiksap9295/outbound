@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>Transporter}" class="sapUiPopupWithPadding" items="{Vendor>/}" search="onValueHelpSearch" liveChange="onValueHelpSearch" confirm="onValueHelpConfirm"
+		cancel="onValueHelpCancel">
+		<StandardListItem title="{Vendor>Lifnr}" description="{Vendor>Name1}" />
+	</SelectDialog>
+</core:FragmentDefinition>

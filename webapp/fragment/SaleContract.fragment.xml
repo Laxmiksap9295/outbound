@@ -1,0 +1,18 @@
+<!--<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">-->
+<!--	<SelectDialog title="{i18n>SaleContract}" class="sapUiPopupWithPadding" items="{JMSc>/}" search="onsearchSc" liveChange="onsearchSc"-->
+<!--		confirm="fnconfirmSc" cancel="fncancel">-->
+<!--		<StandardListItem title="{JMSc>Vbeln}" description="{JMSc>Customer}" info="{JMSc>Otnum}"/>-->
+<!--	</SelectDialog>-->
+<!--</core:FragmentDefinition>-->
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>SaleContract}" items="{JMSc>/}" class="sapUiPopupWithPadding Dialog_ATSOURCE1" confirm="fnconfirmSc"
+		cancel="fnCancel" liveChange="onsearchSc" search="onsearchSc">
+		<ObjectListItem title="{JMSc>Vbeln}">
+			<attributes>
+				<!--<ObjectAttribute text="{Vendordialog>Mcod1}" class="WordWrapClass"></ObjectAttribute>-->
+				<ObjectAttribute text="{JMSc>Customer}" class="WordWrapClass"></ObjectAttribute>
+				<ObjectAttribute title="{i18n>OTNUM}" text="{JMSc>Otnum}" class="WordWrapClass"></ObjectAttribute>
+			</attributes>
+		</ObjectListItem>
+	</SelectDialog>
+</core:FragmentDefinition>

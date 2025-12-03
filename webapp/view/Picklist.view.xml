@@ -1,0 +1,178 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="LoadingConfirmation.controller.Picklist"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns:ndc="sap.ndc" xmlns:f="sap.ui.layout.form">
+	<App>
+		<pages>
+			<Page showHeader="false" class=" cl_page">
+				<Bar class="StatusPage">
+					<contentLeft>
+						<Image src="" id="id_homenew" press="onBackPress" class="cl_homeclas sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
+						<!--<Button icon="sap-icon://home" press="onBackPress" class="BtnIcond uy"/>-->
+						<Text text="{i18n>ScanPicklist}" class="sText"></Text>
+					</contentLeft>
+					<contentMiddle></contentMiddle>
+					<contentRight>
+						<Image id="id_logo" class="cl_logo sapUiTinyMarginEnd"/>
+					</contentRight>
+				</Bar>
+				<VBox>
+					<!--Changed by Avinash for Design Changes-->
+					<Toolbar width="100%" height="3rem" class="RemoverBoderBottom sapUiTinyMarginTop">
+						<Switch state="true" id="id_scanid" class="SwitchStyle " customTextOn="{i18n>Barcode}" customTextOff="{i18n>Manual}" change="onSwitchChange">
+							<layoutData>
+								<FlexItemData growFactor="5"/>
+							</layoutData>
+						</Switch>
+						<ToolbarSpacer></ToolbarSpacer>
+						<Button width="9rem" class="ManualCss BtnIconCss1 sapUiSmallMarginEnd" type="Transparent" visible="{setting>/SwitchFlag}" id="id_brcdscan"
+							icon="images/barcode.png" text="{i18n>Clicktoscan}" press="onPressBarcode"></Button>
+					</Toolbar>
+					<!--<Toolbar width="100%" height="3rem" class="RemoverBoderBottom" visible="false" id="id_TbRef">-->
+					<!--	<Select class="cl_valSelct sapUiTinyMarginTop" visible="false" forceSelection="false" change="fnChangeWbType" id="id_WbType">-->
+					<!--		<items>-->
+					<!--			<core:Item text="{i18n>WithWbid}" key="With"/>-->
+					<!--			<core:Item text="{i18n>WithOutWbid}" key="Without"/>-->
+					<!--		</items>-->
+					<!--	</Select>-->
+					<!--	<RadioButtonGroup id="id_Rbref" selectedIndex="-1" visible="false" columns="2" valueState="Success" select="fnRefChange">-->
+					<!--		<RadioButton id="id_WithRb1" text="{i18n>WithRef}" class="cl_RbText"/>-->
+					<!--		<RadioButton id="id_WithoutRb2" text="{i18n>WithoutRef}" class="cl_RbText"/>-->
+					<!--	</RadioButtonGroup>-->
+					<!--</Toolbar>-->
+					<!--<Toolbar width="100%" height="4.5rem" class="RemoverBoderBottom">-->
+					<!--	<HBox width="50%" class="sapUiSmallMarginBegin" justifyContent="Start">-->
+					<!--		<Switch state="true" id="id_scanid" class="SwitchStyle " customTextOn="{i18n>Barcode}" customTextOff="{i18n>Manual}" change="onSwitchChange">-->
+					<!--			<layoutData>-->
+					<!--				<FlexItemData growFactor="5"/>-->
+					<!--			</layoutData>-->
+					<!--		</Switch>-->
+					<!--	</HBox>-->
+					<!--	<HBox width="50%" alignContent="Start" alignItems="Center" justifyContent="End" class="sapUiSmallMarginEnd sapUiTinyMarginBottom">-->
+					<!--		<Button class="ManualCss BtnIconCss1 sapUiTinyMarginEnd" type="Transparent" visible="{setting>/SwitchFlag}" id="id_brcdscan"-->
+					<!--			icon="images/barcode.png" text="{i18n>Clicktoscan}" press="onPressBarcode"></Button>-->
+					<!--	</HBox>-->
+					<!--</Toolbar>-->
+					<f:SimpleForm id="SimpleFormDisplay480_12120Dual" editable="false" layout="ResponsiveGridLayout" labelSpanXL="2" labelSpanL="2"
+						labelSpanM="4" labelSpanS="4" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1"
+						columnsL="1" columnsM="1" singleContainerFullSize="false" class="cl_FormGrid2">
+						<f:content>
+							<core:Title/>
+							<!--<HBox id="id_TbRef" visible="false">-->
+							<Label text="{i18n>RefType}" id="id_RefText" class="Label_CP sapUiTinyMarginTop"></Label>
+							<Select class="cl_valSelct sapUiTinyMarginTop" visible="false" forceSelection="false" change="fnChangeWbType" id="id_WbType">
+								<items>
+									<core:Item text="{i18n>WithWbid}" key="With"/>
+									<core:Item text="{i18n>WithOutWbid}" key="Without"/>
+								</items>
+							</Select>
+							<RadioButtonGroup id="id_Rbref" selectedIndex="-1" visible="false" columns="2" valueState="Success" select="fnRefChange">
+								<RadioButton id="id_WithRb1" text="{i18n>WithRef}" class="cl_RbText"/>
+								<RadioButton id="id_WithoutRb2" text="{i18n>WithoutRef}" class="cl_RbText"/>
+							</RadioButtonGroup>
+							<!--</HBox>-->
+							<Label text="{i18n>DeliveryNo}" id="id_deliveryText" class="Label_CP sapUiTinyMarginTop"></Label>
+							<Input value="{scannerData>/Vbeln}" id="id_delivery" class="InputPlaceholder_CP InputPlaceholder_CPD " width="90%"
+								enabled="{= ${setting>/SwitchFlag} === false}" change="fnDeliveryChange" showValueHelp="false"></Input>
+							<!--Added by Avinash - CFM Changes-->
+							<Label text="{i18n>DelMatDoc}" id="id_MatDocLabel" visible="false" class="Label_CP sapUiTinyMarginTop"></Label>
+							<Input width="90%" visible="false" id="id_MaDoc" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="fnDocList"
+								showSuggestion="true" class="InputPlaceholder_CP InputPlaceholder_CPD "></Input>
+							<Label text="{i18n>DelMatDoc}" id="id_MatDocLabManual" visible="false" class="Label_CP sapUiTinyMarginTop"></Label>
+							<Input width="90%" visible="false" placeholder="{i18n>EntMatDoc}" id="id_MaDocManual" maxLength="10" showSuggestion="true"
+								class="InputPlaceholder_CP InputPlaceholder_CPD "></Input>
+							<!--Added by Avinash for CFM Process-->
+							<Label text="{i18n>DeliveryNo}" visible="false" id="id_CFMVbelnLabel" class="Label_CP sapUiTinyMarginTop"></Label>
+							<MultiInput width="90%" visible="false" id="id_CFMVbeln" showValueHelp="false" placeholder="{i18n>ScanDelivery}"
+								class="InputPlaceholder_CP InputPlaceholder_CPD " tokenUpdate="fnDeleteDL"></MultiInput>
+							<Label text="{i18n>Matnr}" id="id_MatnrLabel" visible="false" class="Label_CP sapUiTinyMarginTop"></Label>
+							<MultiInput width="90%" visible="false" id="id_Matnr" showSuggestion="true" showValueHelp="true" valueHelpOnly="true"
+								valueHelpRequest="fnMatnrHelp" class="InputPlaceholder_CP InputPlaceholder_CPD "></MultiInput>
+							<Label text="{i18n>Lifnr}" id="id_LifnrLabel" visible="false" class="Label_CP sapUiTinyMarginTop"></Label>
+							<Input id="id_Lifnr" visible="false" class="InputPlaceholder_CP InputPlaceholder_CPD " width="90%" enabled="true" showValueHelp="true"
+								valueHelpOnly="true" valueHelpRequest="fnLifnrHelp"></Input>
+							<Label text="{i18n>Remarks}" id="id_RemarksLabel" visible="false" class="Label_CP sapUiTinyMarginTop"></Label>
+							<Input id="id_FreeText" liveChange="fnLiveChangeTextNum" visible="false" class="InputPlaceholder_CP InputPlaceholder_CPD " width="90%"
+								enabled="true" showValueHelp="true" valueHelpOnly="true" valueHelpRequest="fnRemReq"></Input>
+							<!--End of Added	-->
+							<Label id="labelprocessSales" visible="{=${oBatchEnable>/0/CfmProcess}==='X' ? true : false}" text="{i18n>Process}"
+								class="Label_CP sapUiTinyMarginTop"></Label>
+							<ComboBox id="processty" visible="{=${oBatchEnable>/0/CfmProcess}==='X' ? true : false}" change="fnprocessChange" enabled="true"
+								selectedKey="{ScannerData>/Wtype}" width="90%" class="combo sapUiTinyMarginEnd" items="{oProceeModel>/}">
+								<core:Item key="{oProceeModel>Wtype}" text="{oProceeModel>Wtype}"/>
+							</ComboBox>
+							<!--End of Added-->
+							<Label text="{i18n>WeighbridgeProcess}" id="id_RefDyn" visible="{=${oBatchEnable>/0/Wbid}==='X' ? true : false}"
+								class="Label_CP sapUiTinyMarginTop"></Label>
+							<Input id="id_Weighbridge" visible="{=${oBatchEnable>/0/Wbid}==='X' ? true : false}" value="{scannerData>/Wbid}" width="90%"
+								class="InputPlaceholder_CP InputPlaceholder_CPD " enabled="true" showValueHelp="true" valueHelpOnly="true"
+								valueHelpRequest="onweighbridgeF4"></Input>
+							<Label text="{i18n>Plant}" visible="{setting>/SwitchFlag}" class="Label_CP sapUiTinyMarginTop"></Label>
+							<Input id="plant" value="{scannerData>/Werks} - {PlantPickModel>/results/0/WerksDesc}" visible="{setting>/SwitchFlag}"
+								class="InputPlaceholder_CP InputPlaceholder_CPD " width="90%" enabled="false" showValueHelp="false"></Input>
+							<Label text="{i18n>DeliveryCreationDate}" visible="{setting>/SwitchFlag}" class="Label_CP sapUiTinyMarginTop"></Label>
+							<DatePicker width="90%" visible="{setting>/SwitchFlag}"
+								value="{path:'scannerData>/Erdat',formatter:'LoadingConfirmation.model.formatter.fnDate'}" displayFormat="dd/MM/YYYY"
+								class="InputPlaceholder_CP InputPlaceholder_CPD " enabled="false"></DatePicker>
+							<Label text="{i18n>DeliveryCreationTime}" visible="{setting>/SwitchFlag}" class="Label_CP sapUiTinyMarginTop"></Label>
+							<TimePicker width="90%" visible="{setting>/SwitchFlag}" id="id_timepick"
+								value="{path:'scannerData>/Erzet', formatter:'LoadingConfirmation.model.formatter.fnTime'} "
+								class="InputPlaceholder_CP InputPlaceholder_CPD " enabled="false"></TimePicker>
+							<Label text="{i18n>Picdat}" class="Label_CP sapUiTinyMarginTop"></Label>
+							<DatePicker id="id_gatedate" width="90%" class="InputPlaceholder_CP " displayFormat="dd-MM-YYYY" valueFormat="dd-MM-YYYY" enabled="false"></DatePicker>
+							<Label text="{i18n>Picktim}" class="Label_CP sapUiTinyMarginTop"></Label>
+							<TimePicker id="id_gatetime" width="90%" valueFormat="hh:mm:ss a" displayFormat="hh:mm:ss a" class="InputPlaceholder_CP " enabled="false"></TimePicker>
+						</f:content>
+					</f:SimpleForm>
+					<!--End of Added by Avinash-->
+					<VBox >
+						<!--	<Toolbar width="100%" class="RemoverBoderBottom sapUiTinyMarginTop" height="4rem" id="id_deliverywithbox">-->
+						<!--<VBox width="100%" id="id_deliverywithbox">-->
+						<!--	<Label text="{i18n>DeliveryNo}" class="Label_CP sapUiSmallMarginBegin"></Label>-->
+						<!--	<Input value="{scannerData>/Vbeln}" id="id_delivery" class="InputPlaceholder_CP InputPlaceholder_CPD sapUiSmallMarginBegin" width="92%"-->
+						<!--		enabled="{= ${setting>/SwitchFlag} === false}" change="fnDeliveryChange" showValueHelp="false"></Input>-->
+						<!--</VBox>-->
+						<!--<VBox width="100%" id="id_WeighbridgeProcess" class="" visible="{setting>/SwitchFlag}">-->
+						<!--	<Label text="{i18n>WeighbridgeProcess}" visible="{=${oBatchEnable>/0/Wbid}==='X' ? true : false}" class="Label_CP sapUiSmallMarginBegin"></Label>-->
+						<!--	<Input id="id_Weighbridge" visible="{=${oBatchEnable>/0/Wbid}==='X' ? true : false}" value="{scannerData>/Wbid}" width="92%"-->
+						<!--		class="InputPlaceholder_CP InputPlaceholder_CPD sapUiSmallMarginBegin" enabled="true" showValueHelp="true" valueHelpOnly="true"-->
+						<!--		valueHelpRequest="onweighbridgeF4"></Input>-->
+						<!--</VBox>-->
+						<!--<VBox id="id_plantwith" width="100%" class="" justifyContent="Center" visible="{setting>/SwitchFlag}">-->
+						<!--	<Label text="{i18n>Plant}" class="Label_CP sapUiSmallMarginBegin"></Label>-->
+						<!--	<Input id="plant" value="{scannerData>/Werks}" class="InputPlaceholder_CP InputPlaceholder_CPD sapUiSmallMarginBegin" width="92%"-->
+						<!--		enabled="false" showValueHelp="false"></Input>-->
+						<!--</VBox>-->
+						<!--<VBox width="100%" visible="{setting>/SwitchFlag}">-->
+						<!--	<Label text="{i18n>DeliveryCreationDate}" class="Label_CP sapUiSmallMarginBegin"></Label>-->
+						<!--	<DatePicker width="92%" value="{path:'scannerData>/Erdat',formatter:'LoadingConfirmation.model.formatter.fnDate'}"-->
+						<!--		displayFormat="dd/MM/YYYY" class="InputPlaceholder_CP InputPlaceholder_CPD sapUiSmallMarginBegin" enabled="false"></DatePicker>-->
+						<!--</VBox>-->
+						<!--<VBox width="100%" visible="{setting>/SwitchFlag}">-->
+						<!--	<Label text="{i18n>DeliveryCreationTime}" class="Label_CP sapUiSmallMarginBegin"></Label>-->
+						<!--	<TimePicker width="92%" id="id_timepick" value="{path:'scannerData>/Erzet', formatter:'LoadingConfirmation.model.formatter.fnTime'} "-->
+						<!--		class="InputPlaceholder_CP InputPlaceholder_CPD sapUiSmallMarginBegin" enabled="false"></TimePicker>-->
+						<!--</VBox>-->
+						<VBox width="100%">
+							<HBox>
+								<VBox width="50%" class="">
+									<!--<Label text="{i18n>Picdat}" class="Label_CP sapUiSmallMarginBegin"></Label>-->
+									<!--<DatePicker id="id_gatedate" width="83.6%" class="InputPlaceholder_CP sapUiSmallMarginBegin" displayFormat="dd-MM-YYYY"-->
+									<!--	valueFormat="dd-MM-YYYY" enabled="false"></DatePicker>-->
+									<Button text="{i18n>Ok}" id="id_okManual" type="Unstyled" width="90%" visible="false"
+										class="cl_buttonok sapUiSmallMarginBeginEnd sapUiSmallMarginTop cl_BtnCaptureStartTim" press="fnPressok"/>
+									<Button text="{i18n>LoadStat}" id="id_ok" width="90%" visible="{setting>/SwitchFlag}" type="Unstyled" 
+										class="cl_buttonok sapUiSmallMarginBeginEnd sapUiSmallMarginTop cl_BtnCaptureStartTim" press="fnexpandok"/>
+								</VBox>
+								<VBox width="50%" class="">
+									<!--<Label text="{i18n>Picktim}" class="Label_CP sapUiSmallMarginBegin"></Label>-->
+									<!--<TimePicker id="id_gatetime" width="83.6%" valueFormat="hh:mm:ss a" displayFormat="hh:mm:ss a"-->
+									<!--	class="InputPlaceholder_CP sapUiSmallMarginBegin " enabled="false"></TimePicker>-->
+									<Button text="{i18n>Clear}" type="Unstyled" width="90%" class="sapUiSmallMarginTop cl_buttonclear" press="onScannerCancel"/>
+								</VBox>
+							</HBox>
+						</VBox>
+					</VBox>
+				</VBox>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

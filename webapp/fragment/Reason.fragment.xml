@@ -1,0 +1,35 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	<Dialog class="DialogReason sapUiSizeCompact" xmlns:ndc="sap.ndc">
+		<customHeader>
+			<Bar class="Inbound_Bar">
+				<contentMiddle>
+					<Label text="{i18n>ReasonforChange}" class="Inbound_Title" design="Bold"></Label>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://decline" press="onCloseReason" class="Inbound_NavBtn" id="id_ReasonCancle"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<Panel class="sapUiSizeCompact cl_PlantSettingPanelReas" width="auto" backgroundDesign="Transparent">
+				<Toolbar class="sapUiTinyMarginBeginEnd firsttoolbarCss"/>
+				<Toolbar class="sapUiTinyMarginBeginEnd firsttoolbarCss"/>
+				<Toolbar class="sapUiTinyMarginBegin firsttoolbarCss">
+					<Label text="{i18n>PlSelectReason}" class="cl_fontReas"></Label>
+				</Toolbar>
+				<Toolbar class="firsttoolbarCss" height="4rem">
+					<!--<ToolbarSpacer/>-->
+					<ComboBox id="id_Reason" width="150%" selectedKey="{scannerData>/Config6}" class="cl_Combo sapUiSmallMarginTop" items="{JMReason>/}">
+						<core:Item key="{JMReason>Reason}" text="{JMReason>Reason}"/>
+					</ComboBox>
+					<!--<ToolbarSpacer/>-->
+				</Toolbar>
+				<Toolbar class="sapUiTinyMarginBeginEnd firsttoolbarCss"/>
+				<Toolbar class="sapUiTinyMarginBeginEnd firsttoolbarCss"/>
+			</Panel>
+		</content>
+		<beginButton>
+			<Button text="{i18n>ReasonSubmit}" icon="sap-icon://cause" press="fnReasonSubmit" visible="true" id="id_ReasonSubmit" class="GRheaderBtnPosted"/>
+		</beginButton>
+	</Dialog>
+</core:FragmentDefinition>

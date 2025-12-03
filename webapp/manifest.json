@@ -1,0 +1,290 @@
+{
+    "_version": "1.52.32",
+    "sap.app": {
+        "id": "LoadingConfirmation",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "sourceTemplate": {
+            "id": "servicecatalog.connectivityComponent",
+            "version": "0.0.0",
+            "toolsId": "ecef0cd0-7391-4dc6-9d7c-41ffedfa6901"
+        },
+        "dataSources": {
+            "ZGW_GT_SD_DELIVERY_DET_GE_SRV_01": {
+                "uri": "/sap/opu/odata/sap/ZGW_GT_SD_DELIVERY_DET_GE_SRV_01/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "2.0",
+                    "localUri": "localService/ZGW_GT_SD_DELIVERY_DET_GE_SRV_01/metadata.xml"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        },
+        "supportedThemes": [
+            "sap_hcb",
+            "sap_belize"
+        ]
+    },
+    "sap.ui5": {
+        "rootView": {
+            "viewName": "LoadingConfirmation.view.App",
+            "type": "XML"
+        },
+        "dependencies": {
+            "minUI5Version": "1.30.0",
+            "libs": {
+                "sap.ui.core": {},
+                "sap.m": {},
+                "sap.ui.layout": {},
+                "sap.ushell": {},
+                "sap.collaboration": {},
+                "sap.ui.comp": {},
+                "sap.uxap": {}
+            }
+        },
+        "contentDensities": {
+            "compact": false,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "LoadingConfirmation.i18n.i18n"
+                }
+            },
+            "localModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "preload": true
+            },
+            "odata": {
+                "type": "sap.ui.model.odata.ODataModel",
+                "settings": {
+                    "defaultOperationMode": "Server",
+                    "defaultBindingMode": "OneTime",
+                    "defaultCountMode": "Request"
+                },
+                "dataSource": "ZGW_GT_SD_DELIVERY_DET_GE_SRV_01",
+                "preload": true,
+                "useBatch": false
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ],
+            "js": [
+                {
+                    "uri": "ScannerAppLibrary/index.min.js"
+                },
+                {
+                    "uri": "ScannerAppLibrary/quagga.min.js"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewPath": "LoadingConfirmation.view",
+                "controlId": "id_app"
+            },
+            "targets": {
+                "GateEntry": {
+                    "viewType": "XML",
+                    "viewName": "GateEntry",
+                    "viewLevel": 1,
+                    "controlAggregation": "pages"
+                },
+                "GateExit": {
+                    "viewType": "XML",
+                    "viewName": "GateExit",
+                    "viewLevel": 2,
+                    "controlAggregation": "pages"
+                },
+                "StatusUpdate": {
+                    "viewType": "XML",
+                    "viewName": "StatusUpdate",
+                    "viewLevel": 4,
+                    "controlAggregation": "pages"
+                },
+                "Dashboard": {
+                    "viewType": "XML",
+                    "viewName": "Dashboard",
+                    "viewLevel": 3,
+                    "controlAggregation": "pages"
+                },
+                "Deliverycheck": {
+                    "viewType": "XML",
+                    "viewName": "Deliverycheck",
+                    "viewLevel": 4,
+                    "controlAggregation": "pages"
+                },
+                "Picklist": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearAggregation": true,
+                    "viewName": "Picklist",
+                    "viewLevel": 5,
+                    "controlAggregation": "pages"
+                },
+                "completedPicklist": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearAggregation": true,
+                    "viewName": "completedPicklist",
+                    "viewLevel": 6,
+                    "controlAggregation": "pages"
+                },
+                "TAT": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearAggregation": true,
+                    "viewName": "TAT",
+                    "viewLevel": 7,
+                    "controlAggregation": "pages"
+                },
+                "Status": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearAggregation": true,
+                    "viewName": "Status",
+                    "viewLevel": 8,
+                    "controlAggregation": "pages"
+                },
+                "TOConfirm": {
+                    "viewType": "XML",
+                    "viewName": "TOConfirm",
+                    "viewLevel": 9,
+                    "controlAggregation": "pages"
+                },
+                "TOConfirmNew": {
+                    "viewType": "XML",
+                    "viewName": "TOConfirmNew",
+                    "viewLevel": 10,
+                    "controlAggregation": "pages"
+                }
+            },
+            "routes": [
+                {
+                    "name": "GateEntry",
+                    "pattern": "GateEntry",
+                    "target": [
+                        "GateEntry"
+                    ]
+                },
+                {
+                    "name": "GateExit",
+                    "pattern": "GateExit",
+                    "target": [
+                        "GateExit"
+                    ]
+                },
+                {
+                    "name": "StatusUpdate",
+                    "pattern": "StatusUpdate",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "StatusUpdate"
+                    ]
+                },
+                {
+                    "name": "Dashboard",
+                    "pattern": "",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "Dashboard"
+                    ]
+                },
+                {
+                    "name": "Deliverycheck",
+                    "pattern": "Deliverycheck",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "Deliverycheck"
+                    ]
+                },
+                {
+                    "name": "Picklist",
+                    "pattern": "Picklist",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "Picklist"
+                    ]
+                },
+                {
+                    "name": "completedPicklist",
+                    "pattern": "completedPicklist/{List}",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "completedPicklist"
+                    ]
+                },
+                {
+                    "name": "TAT",
+                    "pattern": "TAT",
+                    "target": [
+                        "TAT"
+                    ]
+                },
+                {
+                    "name": "Status",
+                    "pattern": "Status",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "Status"
+                    ]
+                },
+                {
+                    "name": "TOConfirm",
+                    "pattern": "TOConfirm",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "TOConfirm"
+                    ]
+                },
+                {
+                    "name": "TOConfirmNew",
+                    "pattern": "TOConfirmNew",
+                    "titleTarget": "",
+                    "greedy": false,
+                    "target": [
+                        "TOConfirmNew"
+                    ]
+                }
+            ]
+        }
+    },
+    "sap.platform.abap": {
+        "uri": "/sap/bc/ui5_ui5/sap/zgtca_load_cnfm",
+        "_version": "1.1.0"
+    }
+}

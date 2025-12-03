@@ -1,0 +1,160 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="LoadingConfirmation.controller.Deliverycheck"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout">
+	<App>
+		<pages>
+			<Page title="{i18n>DeliveryQuantityCheck}" showHeader="false" class="cl_page">
+				<content>
+					<Bar class="StatusPage">
+						<contentLeft>
+							<Image src="" id="id_homenew" press="onBackPress" class="cl_homeclas sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
+							<Text text="{i18n>DeliveryQuantityCheck}" class="sText"></Text>
+						</contentLeft>
+						<contentMiddle></contentMiddle>
+						<contentRight>
+							<Image src="Images/login-logo@2x.png" id="id_logo" class="cl_logo sapUiTinyMarginEnd"/>
+						</contentRight>
+					</Bar>
+					<l:Grid defaultSpan="L6 M6 S6" class="bgColorWhite removePadding removeMargin headerBorder">
+						<l:content>
+							<VBox>
+								<VBox alignItems="Start" class="greenBackGround ">
+									<Label text="{i18n>HeaderData}" class="Label_HeaderData"></Label>
+								</VBox>
+								<VBox alignItems="Start">
+									<Label text="{i18n>DeliveryNo} / {i18n>ReferenceNo}" class="Label_CP_B sapUiTinyMarginTop"></Label>
+									<Label text="{DeliverySet>/Header/Vbeln} / {DeliverySet>/Header/Wbid}" class="Label_CP_E"></Label>
+								</VBox>
+								<!--<VBox alignItems="Start" visible="{oViewModel>/SalesProperty}">-->
+								<!--	<Label text="{i18n>SalesOrder}" class="Label_CP_B sapUiTinyMarginTop"></Label>-->
+								<!--	<Label text="{DeliverySet>/Header/So_Number}" class="Label_CP_E"></Label>-->
+								<!--</VBox>-->
+								<!--<VBox alignItems="Start" visible="{oViewModel>/PurchaseProperty}">-->
+								<!--	<Label text="{i18n>PurchOrder}" class="Label_CP_B sapUiTinyMarginTop"></Label>-->
+								<!--	<Label text="{DeliverySet>/Header/So_Number}" class="Label_CP_E"></Label>-->
+								<!--</VBox>-->
+								<!--code ended by kirubakaran on 23.09.2020-->
+								<VBox alignItems="Start">
+									<!--<HBox>-->
+									<!--<Image src="Images/-e-user.png" class="cl_pickimage sapUiTinyMarginTop "></Image>-->
+									<Label text="{i18n>DeliveryCreatedBy}" class="Label_CP_B sapUiTinyMarginTop "></Label>
+									<!--</HBox>-->
+									<Label text="{DeliverySet>/Header/Ernam}" class="Label_CP_E"></Label>
+								</VBox>
+								<VBox alignItems="Start">
+									<Label text="{i18n>DeliveryCreationDateTime}" class="Label_CP_B sapUiTinyMarginTop" wrapping="false"></Label>
+									<Label
+										text=" {path:'DeliverySet>/Header/Erdat', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd/MM/yyyy' }} {path:'DeliverySet>/Header/Erzet', formatter:'.formatTimeS'} "
+										class="Label_CP_E"></Label>
+								</VBox>
+								<VBox alignItems="Start">
+									<Label text="{i18n>LoadingStarDatetTime}" class="Label_CP_B sapUiTinyMarginTop" wrapping="false"></Label>
+									<Label
+										text=" {path:'DeliverySet>/Header/Kodat', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd/MM/yyyy' }} {path:'DeliverySet>/Header/Kouhr', formatter:'.formatTimeS'} "
+										class="Label_CP_E"></Label>
+								</VBox>
+							</VBox>
+							<VBox>
+								<VBox alignItems="Start">
+									<Label text="" class="Label_HeaderData_Empty "></Label>
+								</VBox>
+								<VBox alignItems="Start">
+									<Label text="{i18n>ShiptoParty}" class="Label_CP_B sapUiTinyMarginTop"></Label>
+									<Label text="{DeliverySet>/Header/Kunnr} - {DeliverySet>/Header/KunnrDesc}" class="Label_CP_E"></Label>
+								</VBox>
+								<!--code added by kirubakaran on 23.09.2020-->
+								<!--<VBox alignItems="Start" visible="{oViewModel>/EasyProperty}">-->
+								<!--	<Label text="{i18n>EasyExport}" class="Label_CP_B sapUiTinyMarginTop"></Label>-->
+								<!--	<Label text="{DeliverySet>/Header/Ee_Number}" class="Label_CP_E"></Label>-->
+								<!--</VBox>-->
+								<!--<VBox alignItems="Start" visible="{oViewModel>/CMSProperty}">-->
+								<!--	<Label text="{i18n>CmsExport}" class="Label_CP_B sapUiTinyMarginTop"></Label>-->
+								<!--	<Label text="{DeliverySet>/Header/Ee_Number}" class="Label_CP_E"></Label>-->
+								<!--</VBox>-->
+								<!--code ended by kirubakaran on 23.09.2020-->
+								<VBox alignItems="Start">
+									<Label text="{i18n>Plant}" class="Label_CP_B sapUiTinyMarginTop"></Label>
+									<Label text="{DeliverySet>/Header/Werks} - {DeliverySet>/Header/WerksDesc}" class="Label_CP_E"></Label>
+								</VBox>
+								<!--code added by kirubakaran on 22.07.2020-->
+								<!--<VBox alignItems="Start" visible="{oViewModel>/NotaProperty}">-->
+								<!--	<Label text="{i18n>notaNumber}" class="Label_CP_B sapUiTinyMarginTop"></Label>-->
+								<!--	<Label text="{DeliverySet>/Header/Nf_Number}" class="Label_CP_E"></Label>-->
+								<!--</VBox>-->
+								<!--code ended by kirubakaran on 22.07.2020-->
+								<VBox alignItems="Start">
+									<Label text="{i18n>DriverName}" class="Label_CP_B sapUiTinyMarginTop"></Label>
+									<Label text="{DeliverySet>/Header/Dname}" class="Label_CP_E"></Label>
+								</VBox>
+								<VBox alignItems="Start">
+									<Label text="{i18n>TruckNumber}" class="Label_CP_B sapUiTinyMarginTop "></Label>
+									<Label text="{DeliverySet>/Header/Truck}" class="Label_CP_E sapUiTinyMarginBottom"></Label>
+								</VBox>
+							</VBox>
+						</l:content>
+					</l:Grid>
+					<l:Grid defaultSpan="L6 M6 S6" class="bgColorWhite removePadding removeMargin ">
+						<l:content>
+							<VBox>
+								<VBox alignItems="Start" class="greenBackGround ">
+									<Label text="{i18n>ItemsData}" class="Label_HeaderData"></Label>
+								</VBox>
+							</VBox>
+						</l:content>
+					</l:Grid>
+					<l:Grid defaultSpan="L12 M12 S12" class="bgColorWhite removePadding removeMargin sapUiTinyMarginTop GridClass">
+						<List class="dqcList"
+							items="{ path : 'DeliverySet>/HeaderItems', sorter : { path : 'StrLoc', group : true, descending: false }, groupHeaderFactory: '.getGroupHeader' }">
+							<CustomListItem type="Active" press="onItemPress" class="subItems">
+								<l:Grid defaultSpan="L12 M12 S12" class="Form_Label">
+									<ObjectStatus class="Form_Label Form_Label_Wrapping sapUiSmallMarginBottom"
+										state="{path:'DeliverySet>Pikmg',formatter:'LoadingConfirmation.model.formatter.fnPickingStatus'}" text="{i18n>ItemNo}: {DeliverySet>Posnr}">
+										<layoutData>
+											<l:GridData span="L12 M6 S12"/>
+										</layoutData>
+									</ObjectStatus>
+									<!--	<Label class="Form_Label Form_Label_Wrapping">
+									
+									</Label>-->
+									<!--<HBox>-->
+									<!--</HBox>-->
+									<Label text="{i18n>Material}: {DeliverySet>Matnr} - {DeliverySet>Maktx}" class="Form_Label Form_Label_Wrapping">
+										<layoutData>
+											<l:GridData span="L12 M6 S12"/>
+										</layoutData>
+									</Label>
+									<!--<Label text="{i18n>MaterialDescription}: {DeliverySet>Maktx}" class="Form_Label Form_Label_Wrapping">-->
+									<!--	<layoutData>-->
+									<!--		<l:GridData span="L12 M12 S12"/>-->
+									<!--	</layoutData>-->
+									<!--</Label>-->
+									<Label id="idDeliveryQtyViewLabel" text="{i18n>DeliveryQty}: {DeliverySet>Lfimg} {DeliverySet>Vrkme}" class="Form_Label Form_Label_Wrapping">
+										<layoutData>
+											<l:GridData span="L12 M6 S12"/>
+										</layoutData>
+									</Label>
+									<!--<HBox visible="{=${oLocEnable>/results/0/F4FieldsNav/results/0/Charg01}==='X' ? true : false }">-->
+									<HBox visible="{=${oLocEnable>/Charg01}==='X' ? true : false }">
+										<Label text="{i18n>Location}" class="sapUiTinyMarginTop Form_Label Form_Label_Wrapping">
+											<layoutData>
+												<l:GridData span="L12 M6 S12"/>
+											</layoutData>
+										</Label>
+										<Input class=" sapUiTinyMarginBegin" value="{DeliverySet>Lgort} - {DeliverySet>Lgobe}" valueHelpOnly="true" showValueHelp="true"
+											enabled="true" valueHelpRequest="onPressSloc"></Input>
+									</HBox>
+										<ToolbarSpacer/>
+										<HBox>
+										<Label text="{i18n>packageDetails}" class="Form_Label Form_Label_Wrapping" design="Bold"/>
+										<Label text=" "/>
+										<Label/>
+										<Link id="idPackegingDetails" text="{= ${DeliverySet>PackWt} ? ${DeliverySet>PackWt} : 0 }" press="onPackagongDetailsBtnPress"/>
+										</HBox>									
+								</l:Grid>
+							</CustomListItem>
+						</List>
+					</l:Grid>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

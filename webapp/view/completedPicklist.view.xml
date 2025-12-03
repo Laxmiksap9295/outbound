@@ -1,0 +1,55 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="LoadingConfirmation.controller.completedPicklist" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page title="{i18n>PickListHeader}" showHeader="false" class="cl_page" enableScrolling="false">
+				<!--	Picked list details display in object list item showing how many pending item and how many complete pick list item-->
+				<!--<content>-->
+				<Bar class="StatusPage">
+					<contentLeft>
+						<!--<Button icon="sap-icon://home" press="onBackPress" class="BtnIcond uy"/>-->
+						<Image src="" id="id_homenew" press="onBackPress" class="cl_homeclas sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
+						<Text text="{i18n>PickListHeader}" class="sText"></Text>
+					</contentLeft>
+					<contentMiddle>
+						
+					</contentMiddle>
+					<contentRight>
+						<Button icon="sap-icon://filter" tooltip="{i18n>filter}" press="onPressFilter" class="icon sapUiTinyMarginEnd"/>
+						<SearchField liveChange="fnSearchDeliveryNo" class="sapUiSizeCompact" width="50%" />
+						<Image id="id_logo" class="cl_logo sapUiTinyMarginEnd"/>
+					</contentRight>
+				</Bar>
+				<ScrollContainer vertical="true" height="80%">
+					<content>
+						<List id="PickListHeader" items="{ path : 'PickList>/results', sorter : { path : 'Vbeln', descending: true }}" class="PickListC LockBarBody" mode="None">
+							<items>
+								<ObjectListItem title="{PickList>Vbeln}" type="Active" number="Picking Status" press="fnListPressToScan"
+									numberUnit="{PickList>Kostk}">
+									<attributes>
+										<ObjectAttribute text="{i18n>Shiptoparty} {PickList>Kunnr} - {PickList>KunnrDesc}"/>
+										<!--<ObjectAttribute text="{i18n>notaNumber} {PickList>Nf_Number}" visible="{oViewModel>/NotaProperty}"/>-->
+										<!--Loading Start Date-->
+										<ObjectAttribute
+											text="{i18n>Picdat} : { path: 'PickList>Kodat', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd/MM/yyyy' } }"
+											id="id_loadstartdate"/>
+										<!--Loading End Date-->
+										<ObjectAttribute
+											text="{i18n>Loadingenddat} : { path: 'PickList>Lddat', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd/MM/yyyy' } }"
+											id="id_loadenddate"/>
+										<!-->Loading Start Time-->
+										<ObjectAttribute text="{i18n>Loadingstrttim} : {path:'PickList>Kouhr',formatter:'LoadingConfirmation.model.formatter.fnTime'}"
+											id="id_loadstarttime"/>
+										<!--Loading End Time-->
+										<ObjectAttribute text="{i18n>Loadingendtim} : {path:'PickList>Lduhr',formatter:'LoadingConfirmation.model.formatter.fnTime'}"
+											id="id_loadendtime"/>
+									</attributes>
+								</ObjectListItem>
+							</items>
+						</List>
+					</content>
+				</ScrollContainer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

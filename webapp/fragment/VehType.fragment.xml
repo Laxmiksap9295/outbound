@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog title="{i18n>Vehtyp}" class="sapUiPopupWithPadding" items="{oVehTypeF4Model>/}" search="onVehTypesearch" liveChange="onVehTypesearch" confirm="fnVehTypeconfirm"
+		cancel="fncancel">
+		<StandardListItem title="{oVehTypeF4Model>Vehtype}" />
+	</SelectDialog>
+</core:FragmentDefinition>

@@ -1,0 +1,32 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" class="sapUiSizeCompact" xmlns:ndc="sap.ndc"
+	xmlns:lib="LoadingConfirmation.lib">
+	<Dialog xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" contentHeight="50%" class="SignatureDialog" title="" id="MailDialog">
+		<customHeader>
+			<Bar>
+				<contentMiddle>
+					<Label text="{i18n>SendMail}" class="Label_Frag"></Label>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://decline" class="zsapMBtnIconClose" press="onMailClose"></Button>
+				</contentRight>
+			</Bar>
+		</customHeader>
+		<content>
+			<VBox width="100%" justifyContent="Center">
+				<Label text="{i18n>Recipient}" class="Label_CP sapUiSmallMarginBegin sapUiSmallMarginTop"></Label>
+				<List items="{JMinput>/}" class="cl_list" width="100%">
+					<CustomListItem >
+						<Input id="id_mailid" type="Email" value="{JMinput>Vbeln}" width="80%" maxLength="50"
+							class="InputPlaceholder_CP InputPlaceholder_CPD sapUiSmallMarginBegin"></Input>
+						<Image id="id_AddImg1" class="AddIconSize sapUiTinyMarginBegin sapUiTinyMarginTop " press="fnPressAdd"></Image>
+						<Image id="id_RemoveImg1" class="RemoveIconSixe sapUiTinyMarginBegin sapUiTinyMarginTop" press="fnPressDelete"></Image>
+					</CustomListItem>
+				</List>
+			</VBox>
+		</content>
+		<endButton>
+			<Button width="150px" text="{i18n>SendMail}" type="Unstyled" class="cl_buttonok sapUiSizeCompact sapUiTinyMarginTop floatRightMR10"
+				press="fnSendEMailFinal"></Button>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>

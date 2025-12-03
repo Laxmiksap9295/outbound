@@ -1,0 +1,213 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="LoadingConfirmation.controller.GateExit"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns:ndc="sap.ndc" xmlns:f="sap.ui.layout.form">
+	<App>
+		<pages>
+			<Page showHeader="false" class=" cl_page" id="id_gateExitPage">
+				<content>
+					<Bar class="StatusPage">
+						<contentLeft>
+							<Image src="" id="id_homenew" press="onBackPress" class="cl_homeclas sapUiTinyMarginBegin sapUiTinyMarginBottom"/>
+							<!--	<Button icon="sap-icon://home" press="onBackPress" class="BtnIcond uy"/>-->
+							<Text text="{i18n>GateExit}" class="sText"></Text>
+						</contentLeft>
+						<contentMiddle></contentMiddle>
+						<contentRight>
+							<Image id="id_logo" class="cl_logo sapUiTinyMarginEnd"/>
+						</contentRight>
+					</Bar>
+					<VBox id="id_scanProcess">
+						<Toolbar width="100%" height="4.5rem" class="RemoverBoderBottom">
+							<HBox width="50%" class="sapUiSmallMarginBegin" justifyContent="Start">
+								<Switch state="true" id="id_scanid" class="SwitchStyle" customTextOn="{i18n>Barcode}" customTextOff="{i18n>Manual}" change="onSwitchChange">
+									<layoutData>
+										<FlexItemData growFactor="5"/>
+									</layoutData>
+								</Switch>
+							</HBox>
+							<HBox width="50%" alignContent="Start" alignItems="Center" justifyContent="End" class="sapUiSmallMarginEnd">
+								<Button width="9rem" class="ManualCss BtnIconCss1 sapUiTinyMarginEnd" type="Transparent" id="id_brcdscan" icon="images/barcode.png"
+									text="{i18n>Clicktoscan}" press="onPressBarcode"></Button>
+							</HBox>
+						</Toolbar>
+						<Toolbar width="100%" height="3rem" class="RemoverBoderBottom sapUiTinyMarginTop">
+							<ToolbarSpacer></ToolbarSpacer>
+							<Label text="{i18n>Reprint}" design="Bold" class="sapUiTinyMarginEnd"></Label>
+							<Button icon="sap-icon://print" class="sapUiSmallMarginEnd" press="onClickReprint"></Button>
+						</Toolbar>
+					</VBox>
+					<VBox id="id_DeliveryManual" width="100%">
+						<Label id="manualweighLabel" text="{i18n>WeighbridgeProcess}" class="Label_CP sapUiSmallMarginBegin"></Label>
+						<Input id="id_WeighbridgeProcessManual" width="75%" class="InputPlaceholder_CP InputPlaceholder_CPD sapUiSmallMarginBegin" enabled="true"
+							showValueHelp="false"></Input>
+						<Label text="{i18n>DeliveryNo}" class="Label_CP sapUiSmallMarginBegin"></Label>
+						<List items="{JMManualDel>/}" width="100%">
+							<CustomListItem >
+								<!--	<HBox width="100%">-->
+								<Input value="{JMManualDel>Vbeln}" width="75%" class="InputPlaceholder_CP InputPlaceholder_CPD sapUiSmallMarginBegin"></Input>
+								<Image id="id_AddImg" class="AddIconSize sapUiTinyMarginBegin sapUiTinyMarginTop " press="fnPressAdd"></Image>
+								<Image id="id_RemoveImg" class="RemoveIconSixe sapUiTinyMarginBegin sapUiTinyMarginTop" press="fnPressDelete"></Image>
+								<!--	</HBox>-->
+							</CustomListItem>
+						</List>
+					</VBox>
+					<VBox id="with_delivery">
+						<!--Added by Avinash for Design Changes-->
+						<f:SimpleForm id="SimpleFormDisplay480_12120Dual" editable="false" layout="ResponsiveGridLayout" labelSpanXL="2" labelSpanL="2"
+							labelSpanM="4" labelSpanS="4" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="1"
+							columnsL="1" columnsM="1" singleContainerFullSize="false" class="cl_FormGrid2">
+							<f:content>
+								<Label text="{i18n>DeliveryNo}" id="id_DelLabel" class="Label_CP sapUiTinyMarginTop"></Label>
+								<MultiInput width="90%" id="id_delivery" showSuggestion="true" enableMultiLineMode="true" showValueHelp="false"
+									class=" sapUiSizeCompact sapUiSmallMarginBegin"></MultiInput>
+								<Label id="weighprocess" visible="{=${oBatchEnable>/0/Wbid}==='X' ? true : false}" text="{i18n>WeighbridgeProcess}"
+									class="Label_CP sapUiTinyMarginTop"></Label>
+								<Input id="id_WeighbridgeProcess" visible="{=${oBatchEnable>/0/Wbid}==='X' ? true : false}" value="{scannerData>/Wbid}" width="90%"
+									valueHelpRequest="onweighbridgeF4" valueHelpOnly="true" class="InputPlaceholder_CP InputPlaceholder_CPD sapUiSmallMarginBegin"
+									enabled="true" showValueHelp="true"></Input>
+								<Label text="{i18n>Plant}" visible="{=${oBatchEnable>/0/Werks}==='X' ? true : false}" class="Label_CP sapUiTinyMarginTop"></Label>
+								<Input id="id_plantwith1" visible="{=${oBatchEnable>/0/Werks}==='X' ? true : false}" value="{scannerData>/Werks} - {scannerData>/Pname}"
+									width="90%" class="InputPlaceholder_CP InputPlaceholder_CPD sapUiSmallMarginBegin" enabled="false" showValueHelp="false"></Input>
+								<Label text="{i18n>EasyExport}" visible="{oViewModel>/EasyProperty}" class="Label_CP sapUiTinyMarginTop"></Label>
+								<MultiInput id="id_EasyNumwith1" visible="{oViewModel>/EasyProperty}" showSuggestion="true" width="90%"
+									class="sapUiSizeCompact sapUiSmallMarginBegin" enabled="false" showValueHelp="false"></MultiInput>
+								<Label text="{i18n>SalesOrder}" visible="{oViewModel>/SalesProperty}" class="Label_CP sapUiTinyMarginTop"></Label>
+								<MultiInput id="id_SaleNumwith1" visible="{oViewModel>/SalesProperty}" showSuggestion="true" width="90%"
+									class="sapUiSizeCompact sapUiSmallMarginBegin" enabled="false" showValueHelp="false"></MultiInput>
+								<Label text="{i18n>notaNumber}" visible="{oViewModel>/NotaProperty}" class="Label_CP sapUiTinyMarginTop"></Label>
+								<MultiInput id="id_notawith1" visible="{oViewModel>/NotaProperty}" showSuggestion="true" width="90%"
+									class="sapUiSizeCompact sapUiSmallMarginBegin" enabled="false" showValueHelp="false"></MultiInput>
+								<Label text="{i18n>CMSTONUMBER}" visible="{oViewModel>/CmstoProperty}" class="Label_CP sapUiTinyMarginTop"></Label>
+								<MultiInput visible="{oViewModel>/CmstoProperty}" id="id_cmsToValue" width="90%" class="sapUiSizeCompact sapUiSmallMarginBegin"
+									enabled="false" showValueHelp="false" showSuggestion="true"></MultiInput>
+								<Label text="{i18n>DriverId}" visible="{oViewModel>/DriverIdProperty}" class="Label_CP sapUiTinyMarginTop" required="true"></Label>
+								<Input value="{scannerData>/DriverId}" visible="{oViewModel>/DriverIdProperty}" width="90%" id="id_driverId" enabled="false"
+									liveChange="onTruckLiveChange" class="InputPlaceholder_CP InputPlaceholder_CPD sapUiSmallMarginBegin" showValueHelp="false"></Input>
+								<Label text="{i18n>Gateno}" visible="{=${oBatchEnable>/0/Gate}==='X' ? true : false}" class="Label_CP sapUiTinyMarginTop"></Label>
+								<Input value="{scannerData>/Gate} - {scannerData>/Gname}" visible="{=${oBatchEnable>/0/Gate}==='X' ? true : false}" width="90%"
+									id="id_Gateno" enabled="true" valueHelpRequest="fnhandleGate" class="InputPlaceholder_CP InputPlaceholder_CPD sapUiSmallMarginBegin"
+									showValueHelp="true" valueHelpOnly="true"></Input>
+								<Label text="{i18n>TruckNo}" visible="{=${oBatchEnable>/0/Truck}==='X' ? true : false}" class="Label_CP sapUiTinyMarginTop" required="true"></Label>
+								<Input value="{scannerData>/Truck}" visible="{=${oBatchEnable>/0/Truck}==='X' ? true : false}" width="90%" id="id_truck" enabled="false"
+									liveChange="onTruckLiveChange" class="InputPlaceholder_CP InputPlaceholder_CPD sapUiSmallMarginBegin" maxLength="20" showValueHelp="false"></Input>
+								<Label text="{i18n>DriverName}" visible="{=${oBatchEnable>/0/Dname}==='X' ? true : false}" class="Label_CP sapUiTinyMarginTop"
+									required="true"></Label>
+								<Input value="{scannerData>/Dname}" visible="{=${oBatchEnable>/0/Dname}==='X' ? true : false}" width="90%" id="id_driver" enabled="false"
+									maxLength="30" liveChange="onDriverLiveChange" class="InputPlaceholder_CP InputPlaceholder_CPD sapUiSmallMarginBegin" showValueHelp="false"></Input>
+								<Label text="{i18n>Remarks}" visible="{=${oBatchEnable>/0/Remark}==='X' ? true : false}" class="Label_CP sapUiTinyMarginTop"></Label>
+								<Input value="{scannerData>/Remark}" visible="{=${oBatchEnable>/0/Remark}==='X' ? true : false}" width="90%" id="id_remarks" enabled="true"
+									class="InputPlaceholder_CP InputPlaceholder_CPD sapUiSmallMarginBegin" showValueHelp="false"></Input>
+								<Label text="{i18n>Reason}" required="true" id="id_ReasonLabel" visible="false" class="Label_CP sapUiTinyMarginTop"></Label>
+								<ComboBox id="id_ReasonChange" width="90%" visible="false" class="InputPlaceholder_CP InputPlaceholder_CPD sapUiSmallMarginBegin">
+									<!--<core:Item key="{JMReason>Reason}" text="{JMReason>Reason}"/>-->
+									<core:Item key="{i18n>TypoMistake}" text="{i18n>TypoMistake}"/>
+									<core:Item key="{i18n>Breakdown}" text="{i18n>Breakdown}"/>
+								</ComboBox>
+								<!--<Input value="{scannerData>/Reason}" visible="false" width="90%" id="id_ReasonChange" enabled="true" maxLength="40"-->
+								<!--	class="InputPlaceholder_CP InputPlaceholder_CPD sapUiSmallMarginBegin" showValueHelp="false"></Input>-->
+								<Label text="{i18n>GateExitDate}" class="Label_CP sapUiTinyMarginTop" visible="{=${oBatchEnable>/0/Gdate}==='X' ? true : false}"></Label>
+								<DatePicker id="id_gatedate" visible="{=${oBatchEnable>/0/Gdate}==='X' ? true : false}" width="90%"
+									class="InputPlaceholder_CP sapUiSmallMarginBegin" displayFormat="dd-MM-YYYY" valueFormat="dd-MM-YYYY" enabled="false"></DatePicker>
+								<Label text="{i18n>GateExitTime}" class="Label_CP sapUiTinyMarginTop" visible="{=${oBatchEnable>/0/Gtime}==='X' ? true : false}"></Label>
+								<TimePicker id="id_gatetime" visible="{=${oBatchEnable>/0/Gtime}==='X' ? true : false}" width="90%" valueFormat="hh:mm:ss a"
+									displayFormat="hh:mm:ss a" class="InputPlaceholder_CP sapUiSmallMarginBegin" enabled="false"></TimePicker>
+							</f:content>
+						</f:SimpleForm>
+						<!--End of Added-->
+						<VBox width="100%" class="" justifyContent="Center" id="id_deliverywithbox">
+							<!--<Label text="{i18n>DeliveryNo}" class="Label_CP sapUiSmallMarginBegin"></Label>-->
+							<!--<MultiInput width="93%" id="id_delivery" showSuggestion="true" enableMultiLineMode="true" showValueHelp="false"-->
+							<!--	class=" sapUiSizeCompact sapUiSmallMarginBegin"></MultiInput>-->
+						</VBox>
+						<VBox width="100%" class="" justifyContent="Center" visible="{=${oBatchEnable>/0/Wbid}==='X' ? true : false}">
+							<!--<Label id="weighprocess" text="{i18n>WeighbridgeProcess}" class="Label_CP sapUiSmallMarginBegin"></Label>-->
+							<!--<Input id="id_WeighbridgeProcess" value="{scannerData>/Wbid}" width="93%"-->
+							<!--	class="InputPlaceholder_CP InputPlaceholder_CPD sapUiSmallMarginBegin" enabled="false" showValueHelp="false"></Input>-->
+						</VBox>
+						<!--	<Toolbar id="id_plantwith" width="100%" class="RemoverBoderBottom" height="4rem" >-->
+						<VBox width="100%" class="sapUiTinyMarginBottom" id="id_plantwith" justifyContent="Center"
+							visible="{=${oBatchEnable>/0/Werks}==='X' ? true : false}">
+							<!--<Label text="{i18n>Plant}" class="Label_CP sapUiSmallMarginBegin"></Label>-->
+							<!--<Input id="id_plantwith1" value="{scannerData>/Werks}" width="93%" class="InputPlaceholder_CP InputPlaceholder_CPD sapUiSmallMarginBegin"-->
+							<!--	enabled="false" showValueHelp="false"></Input>-->
+							<!--Below Line UnCommented by Avinash-->
+							<!--<Text text="{scannerData>/Pname}" class="sapUiSmallMarginBegin"/>-->
+						</VBox>
+						<VBox width="100%" class="sapUiTinyMarginBottom" id="id_EasyNuwith" justifyContent="Center" visible="{oViewModel>/EasyProperty}">
+							<!--<Label text="{i18n>EasyExport}" class="Label_CP sapUiSmallMarginBegin"></Label>-->
+							<!--<MultiInput id="id_EasyNumwith1" showSuggestion="true" width="93%" class="sapUiSizeCompact sapUiSmallMarginBegin" enabled="false"-->
+							<!--	showValueHelp="false"></MultiInput>-->
+							<!--<Text text="{scannerData>/Pname}" class="sapUiSmallMarginBegin"/>-->
+						</VBox>
+						<VBox width="100%" class="sapUiTinyMarginBottom" id="id_SalesNuwith" justifyContent="Center" visible="{oViewModel>/SalesProperty}">
+							<!--<Label text="{i18n>SalesOrder}" class="Label_CP sapUiSmallMarginBegin"></Label>-->
+							<!--<MultiInput id="id_SaleNumwith1" showSuggestion="true" width="93%" class="sapUiSizeCompact sapUiSmallMarginBegin" enabled="false"-->
+							<!--	showValueHelp="false"></MultiInput>-->
+						</VBox>
+						<VBox width="100%" class="sapUiTinyMarginBottom" id="id_notawith" justifyContent="Center" visible="{oViewModel>/NotaProperty}">
+							<!--<Label text="{i18n>notaNumber}" class="Label_CP sapUiSmallMarginBegin"></Label>-->
+							<!--<MultiInput id="id_notawith1" showSuggestion="true" width="93%" class="sapUiSizeCompact sapUiSmallMarginBegin" enabled="false"-->
+							<!--	showValueHelp="false"></MultiInput>-->
+						</VBox>
+						<VBox width="100%" id="id_cmsTowith" visible="{oViewModel>/CmstoProperty}">
+							<!--<Label text="{i18n>CMSTONUMBER}" class="Label_CP sapUiSmallMarginBegin"></Label>-->
+							<!--<MultiInput id="id_cmsToValue" width="93%" class="sapUiSizeCompact sapUiSmallMarginBegin" enabled="false" showValueHelp="false"-->
+							<!--	showSuggestion="true"></MultiInput>-->
+						</VBox>
+						<VBox width="100%" justifyContent="Center" id="id_DriverIdwith" visible="{oViewModel>/DriverIdProperty}" class="sapUiTinyMargiTop">
+							<!--<Label text="{i18n>DriverId}" class="Label_CP sapUiSmallMarginBegin" required="true"></Label>-->
+							<!--<Input value="{scannerData>/DriverId}" width="93%" id="id_driverId" enabled="false" liveChange="onTruckLiveChange"-->
+							<!--	class="InputPlaceholder_CP InputPlaceholder_CPD sapUiSmallMarginBegin" showValueHelp="false"></Input>-->
+						</VBox>
+						<VBox width="100%" class="sapUiTinyMarginBottom" justifyContent="Center" visible="{=${oBatchEnable>/0/Gate}==='X' ? true : false}">
+							<!--<Label text="{i18n>Gateno}" class="Label_CP sapUiSmallMarginBegin"></Label>-->
+							<!--<Input value="{scannerData>/Gate}" width="93%" id="id_Gateno" enabled="true" valueHelpRequest="fnhandleGate"-->
+							<!--	class="InputPlaceholder_CP InputPlaceholder_CPD sapUiSmallMarginBegin" showValueHelp="true" valueHelpOnly="true"></Input>-->
+							<!--Below Line UnCommented by Avinash-->
+							<!--<Text text="{scannerData>/Gname}" class="sapUiSmallMarginBegin"/>-->
+						</VBox>
+						<VBox width="100%" class="" justifyContent="Center" visible="{=${oBatchEnable>/0/Truck}==='X' ? true : false}">
+							<!--<Label text="{i18n>TruckNo}" class="Label_CP sapUiSmallMarginBegin" required="true"></Label>-->
+							<!--<Input value="{scannerData>/Truck}" width="93%" id="id_truck" enabled="false" liveChange="onTruckLiveChange"-->
+							<!--	class="InputPlaceholder_CP InputPlaceholder_CPD sapUiSmallMarginBegin" maxLength="20" showValueHelp="false"></Input>-->
+						</VBox>
+						<VBox width="100%" class="" justifyContent="Center" visible="{=${oBatchEnable>/0/Dname}==='X' ? true : false}">
+							<!--<Label text="{i18n>DriverName}" class="Label_CP sapUiSmallMarginBegin" required="true"></Label>-->
+							<!--<Input value="{scannerData>/Dname}" width="93%" id="id_driver" enabled="false" maxLength="30" liveChange="onDriverLiveChange"-->
+							<!--	class="InputPlaceholder_CP InputPlaceholder_CPD sapUiSmallMarginBegin" showValueHelp="false"></Input>-->
+						</VBox>
+						<VBox width="100%" class="" justifyContent="Center" visible="{=${oBatchEnable>/0/Remark}==='X' ? true : false}">
+							<!--<Label text="{i18n>Remarks}" class="Label_CP sapUiSmallMarginBegin"></Label>-->
+							<!--<Input value="{scannerData>/Remark}" width="93%" id="id_remarks" enabled="true"-->
+							<!--	class="InputPlaceholder_CP InputPlaceholder_CPD sapUiSmallMarginBegin" showValueHelp="false"></Input>-->
+						</VBox>
+						<Toolbar width="100%" class="Toolbarcolorcss">
+							<VBox width="50%" visible="{=${oBatchEnable>/0/Gdate}==='X' ? true : false}" class="sapUiSmallMarginBegin sapUiSmallMarginEnd"
+								justifyContent="Start">
+								<!--<Label text="{i18n>GateExitDate}" class="Label_CP "></Label>-->
+								<!--<DatePicker id="id_gatedate" width="89%" class="InputPlaceholder_CP" displayFormat="dd-MM-YYYY" valueFormat="dd-MM-YYYY" enabled="false"></DatePicker>-->
+							</VBox>
+							<ToolbarSpacer/>
+							<VBox width="50%" visible="{=${oBatchEnable>/0/Gtime}==='X' ? true : false}" class="" justifyContent="Left">
+								<!--<Label text="{i18n>GateExitTime}" class="Label_CP "></Label>-->
+								<!--<TimePicker id="id_gatetime" width="89%" valueFormat="hh:mm:ss a" displayFormat="hh:mm:ss a" class="InputPlaceholder_CP " enabled="false"></TimePicker>-->
+							</VBox>
+						</Toolbar>
+					</VBox>
+					<VBox width="100%">
+						<HBox>
+							<VBox width="50%" class="">
+								<Button text="{i18n>GateExit}" id="id_gateentry" type="Unstyled" width="95%"
+									class="cl_buttonok sapUiSmallMarginBeginEnd sapUiSmallMarginTop cl_BtnCaptureStartTim" press="onScannerSave"/>
+								<Button text="{i18n>Ok}" id="id_ok" type="Unstyled" width="95%"
+									class="cl_buttonok sapUiSmallMarginBeginEnd sapUiSmallMarginTop cl_BtnCaptureStartTim" press="onOkButton"/>
+							</VBox>
+							<VBox width="50%" class="">
+								<Button text="{i18n>Clear}" type="Unstyled" width="95%" class="sapUiSmallMarginTop cl_buttonclear" press="onScannerCancel"/>
+							</VBox>
+						</HBox>
+					</VBox>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
