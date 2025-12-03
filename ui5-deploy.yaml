@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: loadingconfirmation
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          url: http://10.114.8.220:8000
+          client: '300'
+        app:
+          name: ZGTCA_LOAD_CNFM
+          description: Warehouse Loading Confirmation
+          package: ZOAFIORI
+          transport: DS4K913491
+        exclude:
+          - /test/
